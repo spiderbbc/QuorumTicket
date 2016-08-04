@@ -18,7 +18,7 @@ if (!$user->isLoggedIn()) {
     /*echo $user->firts()->username;*/
     $ticket = new Ticket();
 
-    $tickets = $ticket->list();
+   
 
    
   

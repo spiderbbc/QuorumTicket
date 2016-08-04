@@ -16,8 +16,8 @@ class Ticket
 	private $_db,
 			$_data,
 			$_uuid,
-			$_invol= array(),
-			$_error;
+			$_invol = array(),
+			$_error = false;
 	
 	function __construct()
 	{
@@ -69,6 +69,7 @@ class Ticket
 	public function list()
 	{
 		# lista los tiquets para el home sin restricion..
+		$this->_error = false;
 		$tickets = $this->_db->query('
 
 	  SELECT t.id AS numero,
@@ -88,9 +89,18 @@ class Ticket
 		if ($tickets->count()) {
 			# code...
 			$this->_data = $tickets->result();
+
+			if (!empty($this->_data)) {
+				# si no esta vacia (hay resultados)..
+				$this->_error = false;
+				#return $this;
+			}else{
+				$this->_error = true;
+			}
 		}
 
 		return $this;
+		
 	}
 
 
@@ -118,6 +128,12 @@ class Ticket
 	{
 		# retorna la propiedad data...
 		return $this->_data;
+	}
+
+	public function error()
+	{
+		# retorna la propiedad data...
+		return $this->_error;
 	}
 
 	private function invol_to_ticket($uuid)

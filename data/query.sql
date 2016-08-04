@@ -66,3 +66,18 @@ select t.id AS numero,
       join qtelecom.users u on t.user_id = u.id 
       join qtelecom.servicios serv on t.id_servicios = serv.id 
       join qtelecom.status s on t.id_status = s.id 
+
+
+select p.nombre AS nombre,
+       d.nombre AS departamento,
+       p.cargo  AS cargo,
+       p.ext    AS extencion
+
+       FROM qtelecom.perfiles p
+
+       join qtelecom.users u on p.user_id = u.id
+       join qtelecom.departamentos d on p.id_departamento = d.id
+       
+       WHERE
+            u.id = 32
+       

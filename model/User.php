@@ -99,6 +99,39 @@ class Usuario
 		}
 	}
 
+	public function perfilInfobyUserId($user_id)
+	{
+		# retorna el perfil de un usuario...
+		
+		if ($this->find($user_id)) {
+			# code...
+			$perfil = $this->_db->query('
+				
+			select p.nombre AS nombre,
+		       d.nombre AS departamento,
+		       p.cargo  AS cargo,
+		       p.ext    AS extencion
+
+		       FROM qtelecom.perfiles p
+
+		       join qtelecom.users u on p.user_id = u.id
+		       join qtelecom.departamentos d on p.id_departamento = d.id
+       
+       WHERE
+            u.id = ?
+
+				',array($user_id));
+
+
+			if ($perfil->count()) {
+				# code...
+				$this->_data = $perfil->result();
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	public function logout()
 	{
@@ -107,6 +140,13 @@ class Usuario
 		Session::delete($this->_sessionName);
 
 	}
+
+	/*public function firts()
+	{
+		# code...
+		return $this->_data;
+	}*/
+
 
 	public function data()
 	{
@@ -122,10 +162,6 @@ class Usuario
 		return $this->_isLoggin;
 	}
 
-	public function firts()
-	{
-		# code...
-		return $this->_data;
-	}
+	
 
 	}

@@ -2,8 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="es-VE">
+  <title>Title Page</title>
 	<?php include_once 'templates/header.php' ?>
-	<script  type="text/javascript"src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+	
   
 	<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
@@ -37,14 +38,19 @@
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
-	        <!-- <h1>Navbar example</h1>
+	       
+
+          <!-- <h1>Navbar example</h1>
 	        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
 	        <p>
 	          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
 	        </p>
-	        	      </div> -->
-
-	       <table id="example" class="display" cellspacing="0" width="100%"><thead>
+	        </div> -->
+        
+        <?php if (!$ticket->list()->error()): ?>
+          
+          <!-- recorremos ticket -->
+          <table id="example" class="display" cellspacing="0" width="100%"><thead>
       
         
           
@@ -61,7 +67,7 @@
     </thead>
     <tbody>
       
-        <?php foreach ($tickets->data() as $key => $value): ?>
+        <?php foreach ($ticket->list()->data() as $key => $value): ?>
         <tr>
 
         <td><?php echo $value->numero ?>  
@@ -78,6 +84,16 @@
       
       
   </table>
+
+
+        <?php else: ?>
+          <div class="well">
+            <p class="text text-central">No hay Tickets en estos momentos</p>
+          </div>
+        <?php endif ?>
+
+
+	       
 	
 
 	    </div> <!-- /container -->
@@ -87,7 +103,8 @@
 				$('#example').DataTable();
 			} );
 		</script>
-	    <?php include_once 'templates/footer.php' ?>
+	    
 
  		</body>
+    <?php include_once 'templates/footer.php' ?>
 </html>
