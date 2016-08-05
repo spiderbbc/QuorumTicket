@@ -1,0 +1,6 @@
+{
+    "name": "QTelecom",
+    "dependencies": {
+        "ckeditor": "4"
+    }
+}

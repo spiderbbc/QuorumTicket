@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="es-VE">
-  <title>Title Page</title>
+  <title>Crear Ticket</title>
   <?php include_once 'templates/header.php' ?>
   
 <body>
-	 
+	
 
    <div class="container">
     <?php include_once 'templates/nav-bar.php'; ?> 
@@ -86,11 +86,15 @@
                     
                     CKEDITOR.replace( 'msg', {
                     language: 'es',
-                    uiColor: '#9AB8F3'
+                    uiColor: '#9AB8F3',
+                    customConfig: '/QTelecom/static/js/ckeditor_config.js'
+
                    
                 });
 
-            
+                
+
+
 
                 </script>
                 <input type="hidden" name="responder" value="si">
@@ -117,10 +121,14 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
+
+            <div class="well">
+              <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
             <p>Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.</p>
             <p>Cargo: <em><?php echo $perfil->data()[0]->cargo;?></em>.</p>
             <p>Extencion: <em><?php echo $perfil->data()[0]->extencion; ?></em></p>
+         
+            </div>
           </div>
           
         </div><!-- /.blog-sidebar -->

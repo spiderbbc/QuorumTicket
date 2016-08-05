@@ -9,6 +9,9 @@
 	<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
       $('#example').DataTable( {
+        
+         "order": [[ 6, "asc" ]],
+          
         "language": {
             "lengthMenu": "Mostrar _MENU_ Tickets por pagina",
             "sSearch":         "Buscar:",
