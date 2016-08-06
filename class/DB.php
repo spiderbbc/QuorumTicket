@@ -163,6 +163,34 @@ class DB
 		return false;
 	}
 
+
+	public function getByName($fields = array(),$table)
+	{
+		# retorna la data por field ...
+		if (count($fields)) {
+			# si hay datos...
+			$set = '';
+			$x   = 1;
+			foreach ($fields as $field) {
+				# code...
+				$set .= $field;
+				if (count($fields) > $x) {
+					# code...
+					$set .=', ';
+					$x++;
+				}
+
+			}
+			$sql = "SELECT {$set} FROM {$table}";
+			// die($sql);
+			if (!$this->query($sql)->error()) {
+				# code...
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function delete($table,$params)
 	{
 		# elimina un registro...

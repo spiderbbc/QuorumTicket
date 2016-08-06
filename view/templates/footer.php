@@ -15,5 +15,4 @@
 		<script src="/QTelecom/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 		<script  type="text/javascript"src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 
-		  <!-- ckeditor  -->
-    	<script type="text/javascript" language="javascript" src="/QTelecom/bower_components/ckeditor/ckeditor.js"></script>
+		 

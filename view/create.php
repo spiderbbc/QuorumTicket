@@ -31,73 +31,81 @@
 
           <div class="">
             <!-- <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-             -->
+            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p> -->
 
             <form action="" method="POST" class="form-horizontal" role="form">
-               <!-- <div class="form-group">
-                 <legend>Form title</legend>
-               </div> -->
+              <div class="form-group">
+                <?php if (isset($errores)): ?>
+                  <?php foreach ($errores as $error): ?>
+                      <legend><?php echo $error ?></legend>
+                  <?php endforeach ?>
+                <?php endif ?>
+                 
+               </div> 
 
                <label for="titulo">Asunto</label>
-               <input type="text" name="titulo" id="titulo" class="form-control" value="" required="required" pattern="" title="">
+               <input type="text" name="titulo" id="titulo" class="form-control" value="" required="required" title="">
 
                <br>
                                 <label for="servicios">Servicios</label>
                                
-                                <select  class="form-control" name="servicios" id="servicios">
-                                    <option value="0">Internet/Redes</option>
-                                    <option value="1">Telefonia/Mensajeria</option>
+                    <select  class="form-control" name="servicios" id="servicios">
+                                                <!-- servicios -->
+                                   <?php foreach ($datos['servicios'] as $key => $value): ?>
+                                    
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+                                   
+                                   
+                                   <?php endforeach ?>
+                                   
                         
-                                </select>
+                    </select>
                 <br>  
 
                 <label for="">Gravedad</label>
                                
-                                <select  class="form-control" name="gravedad">
-                                    <option value="0">Un problema menor</option>
-                                    <option value="1">Algunos servicios no estan disponibles</option>
-
-                                    <option value="2">No hay Servicios</option>
-                        
-                                </select>
+                    <select  class="form-control" name="gravedad">
+                                            <!-- gravedad -->
+                                  <?php foreach ($datos['gravedad'] as $key => $value): ?>
+                                    
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+                                  
+                                  <?php endforeach ?>
+                         
+                    </select>
                 <br>    
-                                 <label for="">Impacto(Afectados)</label>
+                <label for="">Impacto(Afectados)</label>
                                
-                                <select  class="form-control" name="impacto">
-                                    <option value="0">No hay usuarios afectados</option>
-                                    <option value="1">Algunos usuarios(sistema/finales)</option>
-
-                                    <option value="2">Todos los Usuarios</option>
+                    <select  class="form-control" name="impacto">
+                                         <!-- afectado -->
+                                  <?php foreach ($datos['afectado'] as $key => $value): ?>
+                                    
+                                    <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+                                  
+                                  <?php endforeach ?>
                         
-                                </select>
+                    </select>
                 <br>
 
-                                <label for="inputEmail">Email:</label>
-                <input class="form-control" type="text" placeholder="emails" id="email_field_id" name="email_field">
+                <label for="email">Email:</label>
+                <input class="form-control" type="text" placeholder="emails" id="email" name="email">
 
-                <label for="inputText">Texto</label>
-                <textarea class="form-control" name="msg" id="crear" rows="10" cols="80" wrap="hard" >
+                <label for="msg">Texto</label>
+                <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard" >
                     
                 </textarea>
                 <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    
+                    // Instancia para el CKEditor
                     CKEDITOR.replace( 'msg', {
+
                     language: 'es',
                     uiColor: '#9AB8F3',
-                    customConfig: '/QTelecom/static/js/ckeditor_config.js'
-
+                    customConfig: '/QTelecom/static/js/ckeditor_config.js',
+                    
                    
                 });
-
-                
-
-
-
                 </script>
-                <input type="hidden" name="responder" value="si">
+                <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
                 
             
                 

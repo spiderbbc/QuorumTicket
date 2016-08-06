@@ -25,11 +25,15 @@
 
 - 31/07/2016: controller: Clases controladoras para las vista.
 
-- 01/07/2016: vistas y modelos: Clases modelos y vistas para mostrar datos.
+- 01/08/2016: vistas y modelos: Clases modelos y vistas para mostrar datos.
 
-- 02/07/2016: datatable: bower datatable para mostrar los datos.
+- 02/08/2016: datatable: bower datatable para mostrar los datos.
 
-- 03/07/2016: create vista: maquetacion y datos relacionados sobre quien apertura el ticket.
+- 03/08/2016: create vista: maquetacion y datos relacionados sobre quien apertura el ticket.
+
+- 04/07/2016: se agrega ckeditor via bower y configuracion personal en static/js/ckeditor_config.js y se agrega clase well de bootrap en la seccion perfil-info.
+
+- 05/08/2016: creado metodo class DB (getByName) para los combo-list, se intengran los validadores para el formulario con muestra de errores en el formulario
 
 
 

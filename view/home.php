@@ -10,7 +10,7 @@
 			$(document).ready(function() {
       $('#example').DataTable( {
         
-         "order": [[ 6, "asc" ]],
+         "order": [[ 6, "desc" ]],
           
         "language": {
             "lengthMenu": "Mostrar _MENU_ Tickets por pagina",
