@@ -35,7 +35,7 @@
 
 - 05/08/2016: creado metodo class DB (getByName) para los combo-list, se intengran los validadores para el formulario con muestra de errores en el formulario
 
--07/08/2016: persistencia de datos al momento de crear un ticket y caso contrario redireciona al 404 (Fallo en el mensaje de error 404), se solventan los errores al no tener informacion del perfil de un usuario al momento de crear, se solventa los errores en el home al no tener Tickets disponibles, include ticket en init ...
+- 07/08/2016: persistencia de datos al momento de crear un ticket y caso contrario redireciona al 404 (Fallo en el mensaje de error 404), se solventan los errores al no tener informacion del perfil de un usuario al momento de crear, se solventa los errores en el home al no tener Tickets disponibles, include ticket en init ...
 
 
 ## License
