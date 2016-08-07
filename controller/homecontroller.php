@@ -10,7 +10,7 @@ if (!$user->isLoggedIn()) {
 	Redirect::to('?accion=login');
   # code...
   /*echo $user->firts()->username;*/
-  include_once 'view/home.php';
+  #include_once 'view/home.php';
 
 }else{
 
@@ -18,10 +18,10 @@ if (!$user->isLoggedIn()) {
     /*echo $user->firts()->username;*/
     $ticket = new Ticket();
 
-   
 
-   
-  
+
+
+
 
 }
 

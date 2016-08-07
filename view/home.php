@@ -4,14 +4,14 @@
 <html lang="es-VE">
   <title>Title Page</title>
 	<?php include_once 'templates/header.php' ?>
-	
-  
+
+
 	<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
       $('#example').DataTable( {
-        
+
          "order": [[ 6, "desc" ]],
-          
+
         "language": {
             "lengthMenu": "Mostrar _MENU_ Tickets por pagina",
             "sSearch":         "Buscar:",
@@ -25,7 +25,7 @@
 	</script>
 	<body>
 
-  <?php 
+  <?php
 
    /*foreach ($tickets->data() as $key => $value) {
      # code...
@@ -41,7 +41,7 @@
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
-	       
+
 
           <!-- <h1>Navbar example</h1>
 	        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
@@ -49,15 +49,15 @@
 	          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
 	        </p>
 	        </div> -->
-        
-        <?php if (!$ticket->list()->error()): ?>
-          
+
+        <?php if (!$ticket->listar()->error()): ?>
+
           <!-- recorremos ticket -->
           <table id="example" class="display" cellspacing="0" width="100%"><thead>
-      
-        
-          
-        
+
+
+
+
       <tr>
         <th>Numero Ticket</th>
         <th>Asunto</th>
@@ -69,11 +69,11 @@
       </tr>
     </thead>
     <tbody>
-      
-        <?php foreach ($ticket->list()->data() as $key => $value): ?>
+
+        <?php foreach ($ticket->listar()->data() as $key => $value): ?>
         <tr>
 
-        <td><?php echo $value->numero ?>  
+        <td><?php echo $value->numero ?>
         <a class="btn btn-default btn-xs" href="/QTelecom/q-ver/v-<?php echo $value->numero ?>" role="button">Ingresar</a>
         </td>
         <td><?php echo $value->titulo ?></td>
@@ -84,8 +84,8 @@
         <td><?php echo $value->actualizado ?></td>
         </tr>
         <?php endforeach ?>
-      
-      
+
+
   </table>
 
 
@@ -96,8 +96,8 @@
         <?php endif ?>
 
 
-	       
-	
+
+
 
 	    </div> <!-- /container -->
 
@@ -106,7 +106,7 @@
 				$('#example').DataTable();
 			} );
 		</script>
-	    
+
 
  		</body>
     <?php include_once 'templates/footer.php' ?>

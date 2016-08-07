@@ -1,6 +1,6 @@
 
 
-<?php 
+<?php
 
 
 
@@ -11,36 +11,37 @@
 * descript: clase envoltorio y logica de negocio del ticket
 * fecha: 30-07
 */
-class Ticket 
+class Ticket
 {
 	private $_db,
 			$_data,
 			$_uuid,
 			$_invol = array(),
 			$_error = false;
-	
+
 	function __construct()
 	{
 		# code...
 		$this->_db = DB::getInstance();
 	}
 
-	
+
 	public function update($uuid,$fields = array())
 	{
 		# actualiza un ticket y devuelve true o false..
 	}
 
-	
+
 	public function create($fields = array())
 	{
 		# crea un ticket y devuelve true o false..
+		$this->_error = false;
 		if (count($fields)) {
 			# code...
 			if (!$this->_db->insert('tickets',$fields)) {
 				# otros metodos involucrados...
 				throw new Exception("Error Processing Request", 1);
-				
+				$this->_error = true;
 			}else{
 				$this->_uuid = $this->_db->last_insert();
 			}
@@ -64,9 +65,9 @@ class Ticket
 			return false;
 		}
 	}
-	
 
-	public function list()
+
+	public function listar()
 	{
 		# lista los tiquets para el home sin restricion..
 		$this->_error = false;
@@ -77,30 +78,26 @@ class Ticket
       s.nombre AS estatus,
       u.username AS autor,
       serv.nombre AS servicios,
-      t.date_added AS creado, 
-      t.date_update AS actualizado 
-      from qtelecom.tickets t 
+      t.date_added AS creado,
+      t.date_update AS actualizado
+      from qtelecom.tickets t
 
-      join qtelecom.users u on t.user_id = u.id 
-      join qtelecom.servicios serv on t.id_servicios = serv.id 
+      join qtelecom.users u on t.user_id = u.id
+      join qtelecom.servicios serv on t.id_servicios = serv.id
       join qtelecom.status s on t.id_status = s.id '
       );
 
 		if ($tickets->count()) {
 			# code...
 			$this->_data = $tickets->result();
+			$this->_error = false;
 
-			if (!empty($this->_data)) {
-				# si no esta vacia (hay resultados)..
-				$this->_error = false;
-				#return $this;
-			}else{
-				$this->_error = true;
-			}
+		}else {
+			$this->_error = true;
 		}
 
 		return $this;
-		
+
 	}
 
 
@@ -112,7 +109,7 @@ class Ticket
 		return ($this->exits($uuid)) ? $this->make():$uuid;
 
 	}
-	
+
 	private function last_insert_uuid()
 	{
 		return $this->_uuid;
@@ -142,13 +139,10 @@ class Ticket
 	}
 
 
-	
+
 
 	private function find($value)
 	{
 		# code...
 	}
 }
-
-
-

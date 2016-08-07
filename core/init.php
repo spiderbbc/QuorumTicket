@@ -38,3 +38,4 @@ session_start();
 
 	require_once 'functions/sanitaze.php';
 	require_once 'model/User.php';
+	require_once 'model/Ticket.php';
