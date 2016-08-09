@@ -1,6 +1,6 @@
 <?php
 
-require_once 'core/init.php';
+#require_once 'core/init.php';
 
 
 #if (Input::exits($_SERVER['REQUEST_METHOD'])) {

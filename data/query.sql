@@ -1,6 +1,6 @@
 
 # status  = 1 open, 2 en espera, 3 closed
-# private = 0 public, 1 private 
+# private = 0 public, 1 private
 
 # ticket abierto pero publico ....
 SELECT * FROM `tickets` WHERE status = 1 AND private = 0 ORDER BY date_update
@@ -45,8 +45,8 @@ WHERE
 
 
 
-select uuid,u.username,t.titulo,t.id_status,g.nombre,a.nombre 
-from qtelecom.tickets t 
+select uuid,u.username,t.titulo,t.id_status,g.nombre,a.nombre
+from qtelecom.tickets t
 join qtelecom.users u on t.user_id = u.id #username
 join qtelecom.gravedad g on t.id_gravedad = g.id # gravedad
 #join qtelecom.level l on t.id_level = l.id  #level
@@ -59,13 +59,13 @@ select t.id AS numero,
       s.nombre AS estatus,
       u.username AS autor,
       serv.nombre AS servicios,
-      t.date_added AS creado, 
-      t.date_update AS actualizado 
-      from qtelecom.tickets t 
+      t.date_added AS creado,
+      t.date_update AS actualizado
+      from qtelecom.tickets t
 
-      join qtelecom.users u on t.user_id = u.id 
-      join qtelecom.servicios serv on t.id_servicios = serv.id 
-      join qtelecom.status s on t.id_status = s.id 
+      join qtelecom.users u on t.user_id = u.id
+      join qtelecom.servicios serv on t.id_servicios = serv.id
+      join qtelecom.status s on t.id_status = s.id
 
 # informacion de un usuario
 select p.nombre AS nombre,
@@ -77,25 +77,24 @@ select p.nombre AS nombre,
 
        join qtelecom.users u on p.user_id = u.id
        join qtelecom.departamentos d on p.id_departamento = d.id
-       
+
        WHERE
             u.id = 32
 
 #
-#
+# el supervisor de un usuario mediante el departamento y el grupo a solicitar
 #
 select p.nombre AS nombre,
        u.email  AS email
-       
+
 
        FROM qtelecom.perfiles p
 
        join qtelecom.users u on p.user_id = u.id
        join qtelecom.departamentos d on p.id_departamento = d.id
-       
-       WHERE
-            d.id = 2
-      AND
 
-            u.grupo = 2 
-       
+
+       WHERE
+            d.id = 3     # departamento de quien crea el ticket o el usuario
+       AND
+			      u.grupo = 2  # grupo a quien pertenece el interesado

@@ -104,7 +104,7 @@ if (!$user->isLoggedIn()) {
 						'date_update'		=> date("Y-m-d H:i:s"),
 
 						'id_status'				=> 1,
-						'private'				=> 1
+						'private'			  	=> 1
 
 
 
@@ -114,7 +114,7 @@ if (!$user->isLoggedIn()) {
 						echo $e->getMessage();
 					}
 
-									if ($ticket->error()) {
+									if (!$ticket->error()) {
 										# si no hay error...
 										# reenviamos a la vista view
 										echo " Success!!!";

@@ -39,6 +39,8 @@
 
 - 08/08/2016: Solucionado(Fallo en el mensaje de error 404), cambiado el 404 page,se instala composer(Back-end), se instala swiftmailer(vendor), nuevo backup de la db en la carpeta data.
 
+- 09/08/2016: creacion de emailcontroller, para hacer pruebas unitarias de la libreria swiftmailer(vendor), se cambia el logo en la vista de login- creacion del logo por Katherin Castro.
+
 
 ## License
 
