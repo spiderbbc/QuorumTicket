@@ -37,6 +37,8 @@
 
 - 07/08/2016: persistencia de datos al momento de crear un ticket y caso contrario redireciona al 404 (Fallo en el mensaje de error 404), se solventan los errores al no tener informacion del perfil de un usuario al momento de crear, se solventa los errores en el home al no tener Tickets disponibles, include ticket en init ...
 
+- 08/08/2016: Solucionado(Fallo en el mensaje de error 404), cambiado el 404 page,se instala composer(Back-end), se instala swiftmailer(vendor), nuevo backup de la db en la carpeta data.
+
 
 ## License
 

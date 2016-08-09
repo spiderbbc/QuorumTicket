@@ -114,7 +114,7 @@ if (!$user->isLoggedIn()) {
 						echo $e->getMessage();
 					}
 
-									if (!$ticket->error()) {
+									if ($ticket->error()) {
 										# si no hay error...
 										# reenviamos a la vista view
 										echo " Success!!!";
@@ -122,8 +122,8 @@ if (!$user->isLoggedIn()) {
 
 									}else {
 										# hay un error al guardar
-										Session::flash('error','Upps.. esto es embarazoso pero perdimos su ticket, comuniquese con el administrador');
-										Redirect::to('404');
+										Session::flash('error','Upps .. problemas al crear el ticket');
+										Redirect::to(404);
 										// no dispara el mensaje en el error page --
 									}
 

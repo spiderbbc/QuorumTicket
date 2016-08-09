@@ -53,7 +53,7 @@ join qtelecom.gravedad g on t.id_gravedad = g.id # gravedad
 join qtelecom.afectado a on t.id_afectado = a.id
 
 
-
+# query para datable
 select t.id AS numero,
       t.titulo,
       s.nombre AS estatus,
@@ -67,7 +67,7 @@ select t.id AS numero,
       join qtelecom.servicios serv on t.id_servicios = serv.id 
       join qtelecom.status s on t.id_status = s.id 
 
-
+# informacion de un usuario
 select p.nombre AS nombre,
        d.nombre AS departamento,
        p.cargo  AS cargo,
@@ -80,4 +80,22 @@ select p.nombre AS nombre,
        
        WHERE
             u.id = 32
+
+#
+#
+#
+select p.nombre AS nombre,
+       u.email  AS email
+       
+
+       FROM qtelecom.perfiles p
+
+       join qtelecom.users u on p.user_id = u.id
+       join qtelecom.departamentos d on p.id_departamento = d.id
+       
+       WHERE
+            d.id = 2
+      AND
+
+            u.grupo = 2 
        

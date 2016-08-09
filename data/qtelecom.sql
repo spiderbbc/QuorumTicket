@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2016 at 08:27 PM
--- Server version: 10.1.14-MariaDB
--- PHP Version: 7.0.8
+-- Generation Time: Aug 09, 2016 at 12:18 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quorumticket`
+-- Database: `qtelecom`
 --
 
 -- --------------------------------------------------------
@@ -31,6 +31,16 @@ CREATE TABLE `afectado` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `afectado`
+--
+
+INSERT INTO `afectado` (`id`, `nombre`) VALUES
+(1, 'Ningun Usuario y solo Uno'),
+(2, 'Varios Afectados'),
+(3, 'Ningun Usuario y solo Uno'),
+(4, 'Varios Afectados');
+
 -- --------------------------------------------------------
 
 --
@@ -42,6 +52,14 @@ CREATE TABLE `departamentos` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `departamentos`
+--
+
+INSERT INTO `departamentos` (`id`, `nombre`) VALUES
+(1, 'Sala tecnica'),
+(2, 'Sistemas');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +70,14 @@ CREATE TABLE `gravedad` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gravedad`
+--
+
+INSERT INTO `gravedad` (`id`, `nombre`) VALUES
+(1, 'Un Fallo Menor'),
+(2, 'No hay Servicio Disponible');
 
 -- --------------------------------------------------------
 
@@ -65,16 +91,13 @@ CREATE TABLE `group` (
   `permissions` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `impacto`
+-- Dumping data for table `group`
 --
 
-CREATE TABLE `impacto` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `group` (`id`, `name`, `permissions`) VALUES
+(1, 'Standar User', ''),
+(2, 'Manager', '{"departamento_id":1,\r\n "admin":1}');
 
 -- --------------------------------------------------------
 
@@ -97,7 +120,9 @@ CREATE TABLE `perfiles` (
 --
 
 INSERT INTO `perfiles` (`id`, `user_id`, `id_departamento`, `nombre`, `cargo`, `ext`, `img`) VALUES
-(1, 5, 2, 'xavier', '', '', '');
+(1, 32, 1, 'xavier', 'Operador Tecnico', '0130', ''),
+(2, 45, 2, 'Username test', 'Desconocido', '0000', ''),
+(3, 43, 1, 'Raul Piedra', 'Supervisor Departamento Tecnico', '0101', '');
 
 -- --------------------------------------------------------
 
@@ -143,6 +168,36 @@ CREATE TABLE `servicios` (
   `nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `nombre`) VALUES
+(1, 'Telefonia/Central Telefonica'),
+(2, 'Internet/Conectividad'),
+(3, 'Impresora/Conectividad'),
+(4, 'Red/Carpetas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `nombre`) VALUES
+(1, 'Abierto'),
+(2, 'Cerrado'),
+(3, 'Pendiente');
+
 -- --------------------------------------------------------
 
 --
@@ -155,13 +210,13 @@ CREATE TABLE `tickets` (
   `user_id` int(11) NOT NULL,
   `id_afectado` int(11) NOT NULL,
   `id_gravedad` int(11) NOT NULL,
-  `id_impacto` int(11) NOT NULL,
+  `id_servicios` int(11) NOT NULL,
   `titulo` varchar(150) NOT NULL,
   `msg` text NOT NULL,
   `date_added` datetime NOT NULL,
   `date_update` datetime NOT NULL,
   `date_closed` datetime NOT NULL,
-  `status` int(1) NOT NULL,
+  `id_status` int(1) NOT NULL,
   `private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -169,12 +224,14 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `uuid`, `user_id`, `id_afectado`, `id_gravedad`, `id_impacto`, `titulo`, `msg`, `date_added`, `date_update`, `date_closed`, `status`, `private`) VALUES
-(20, '579e580002e', 5, 1, 1, 1, 'from the controller', 'from the controller', '2016-07-31 19:56:48', '2016-07-31 19:56:48', '0000-00-00 00:00:00', 1, 0),
-(21, '579e5803adc', 5, 1, 1, 1, 'from the controller', 'from the controller', '2016-07-31 19:56:51', '2016-07-31 19:56:51', '0000-00-00 00:00:00', 1, 0),
-(22, '579e58050ff', 5, 1, 1, 1, 'from the controller', 'from the controller', '2016-07-31 19:56:53', '2016-07-31 19:56:53', '0000-00-00 00:00:00', 1, 0),
-(23, '579e58168d4', 5, 1, 1, 1, 'from the controller', 'from the controller', '2016-07-31 19:57:10', '2016-07-31 19:57:10', '0000-00-00 00:00:00', 3, 0),
-(24, '579e58215f3', 5, 1, 1, 1, 'from the controller', 'from the controller', '2016-07-31 19:57:21', '2016-07-31 19:57:21', '0000-00-00 00:00:00', 1, 1);
+INSERT INTO `tickets` (`id`, `uuid`, `user_id`, `id_afectado`, `id_gravedad`, `id_servicios`, `titulo`, `msg`, `date_added`, `date_update`, `date_closed`, `id_status`, `private`) VALUES
+(30, '57a90cff2f7', 45, 2, 2, 3, 'error mesage', '<p>jejjeje</p>\r\n', '2016-08-08 22:51:43', '2016-08-08 22:51:43', '0000-00-00 00:00:00', 1, 1),
+(31, '57a90d6a7ce', 45, 3, 1, 1, 'error mesage', '<p>jejejeje</p>\r\n', '2016-08-08 22:53:30', '2016-08-08 22:53:30', '0000-00-00 00:00:00', 1, 1),
+(32, '57a90dcc5c4', 45, 1, 1, 3, 'error mesage', '<p>jejejeje</p>\r\n', '2016-08-08 22:55:08', '2016-08-08 22:55:08', '0000-00-00 00:00:00', 1, 1),
+(33, '57a90e10548', 45, 1, 1, 4, 'error mesage', '<p>jajajjaa</p>\r\n', '2016-08-08 22:56:16', '2016-08-08 22:56:16', '0000-00-00 00:00:00', 1, 1),
+(34, '57a90eb50b1', 45, 2, 2, 4, 'error mesage', '<p>jjejejeje</p>\r\n', '2016-08-08 22:59:01', '2016-08-08 22:59:01', '0000-00-00 00:00:00', 1, 1),
+(35, '57a90f099ea', 45, 3, 2, 4, 'ero=r\\\\\\\\\\\\', '<p>jejejje</p>\r\n', '2016-08-08 23:00:25', '2016-08-08 23:00:25', '0000-00-00 00:00:00', 1, 1),
+(36, '57a90f51064', 45, 4, 2, 4, 'Ivr \' problems #', '<p>jejejejej</p>\r\n', '2016-08-08 23:01:37', '2016-08-08 23:01:37', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +288,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `salt`, `email`, `joined`, `g
 (40, 'xcastro', '63000259af8210bea8b1a1bab59c0451b625ad8f32f0faf3b92fa368cc918b79', 0xf679ad64c30c80bb3843f521402eda38617788b74bf271f36c7aeac846db90ab, 'ecastro@quorumtelecom.info', '2016-07-30 15:19:25', 1),
 (41, 'thais', '33a44ecc9f4502c81e5bfd9cf8e48b151d84d4c42174cf6735441eeef4fa347f', 0xea4ea54d485ca6c6fec5e493c4a9a676dedfac80257a1f9fe42f3fc074a08551, 'moralesx@hotmail.com', '2016-07-30 15:21:13', 1),
 (42, 'chateing', '334cef1596c7cc4ba6d7e76207ccce24017f2ff4a5745720b03998333acd2f8f', 0xf4f64d58eef852091ee0b14c617f8f445635e89eb8cd74ed17cf33651500b4c5, 'mtvmodel@mtvla.com', '2016-07-30 15:23:14', 1),
-(43, 'rpiedra', 'a0a8f03420418a0511d05a92fcdf0c627b77ffd561657f6dd91944075a68fed3', 0xea2652cd83592685a23fed8ba45b71f088a0d156197da13c6aebe2740a8ad4d2, 'rpiedra@quorumtelecom.info', '2016-07-30 15:32:43', 1),
+(43, 'rpiedra', 'a0a8f03420418a0511d05a92fcdf0c627b77ffd561657f6dd91944075a68fed3', 0xea2652cd83592685a23fed8ba45b71f088a0d156197da13c6aebe2740a8ad4d2, 'rpiedra@quorumtelecom.info', '2016-07-30 15:32:43', 2),
 (44, 'castro', '4c0fe7f9a5b860484ee8844a5183912b1cf66a3b2ea7902730ce99b6b973f418', 0x7777671e45fdeebafddac8b51d655f671a5339e2fc11e9a6c47b6e6ff8abce9e, 'spiderbbc@gmail.com', '2016-07-30 15:34:29', 1),
 (45, 'username', '4195b2027d958fd1b5e471e804dd0302f8c700b99fa3744420a273a84a822b60', 0x3c74e7eba8a599af6c502431fb9c7a7936275b26d045a9ab5a7d6478731abd39, 'spiderbbc@gmail.com', '2016-07-30 15:35:56', 1),
 (46, 'boostrap', '8f105ff1b844515b075b32c9dbcbc24666339511da1dd5c890637a54020b2a2c', 0xc7be4b357635bce76c2363975d2f5b0e92ba18d2d888abccbebc10d6a165a8aa, 'spiderbbc@gmail.com', '2016-07-30 15:38:03', 1),
@@ -281,12 +338,6 @@ ALTER TABLE `group`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `impacto`
---
-ALTER TABLE `impacto`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `perfiles`
 --
 ALTER TABLE `perfiles`
@@ -308,6 +359,12 @@ ALTER TABLE `resp_img`
 -- Indexes for table `servicios`
 --
 ALTER TABLE `servicios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -348,32 +405,27 @@ ALTER TABLE `users_sessions`
 -- AUTO_INCREMENT for table `afectado`
 --
 ALTER TABLE `afectado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `gravedad`
 --
 ALTER TABLE `gravedad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `group`
 --
 ALTER TABLE `group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `impacto`
---
-ALTER TABLE `impacto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `perfiles`
 --
 ALTER TABLE `perfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `respuestas`
 --
@@ -388,12 +440,17 @@ ALTER TABLE `resp_img`
 -- AUTO_INCREMENT for table `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `ticket_img`
 --
