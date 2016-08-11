@@ -21,5 +21,7 @@
 // $mailer = Swift_Mailer::newInstance($transport);
 // $mailer->send($message);
 
-$email = "spiderbbc@gmail.com;eduuccs@gmail;thais@quorumtelecom.info";
-print_r(explodeBy(';',$email));
+$email = "spiderbbc@gmail.com";
+$arrayEmail = explodeBy(';',$email);
+
+echo $arrayEmail[0];

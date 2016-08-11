@@ -67,6 +67,7 @@ if (!$user->isLoggedIn()) {
 						'email' => array(
 							'required' => true,
 							'min'      => 5,
+							'filter'   => 'FILTER_VALIDATE_EMAIL',
 
 						),
 
@@ -116,6 +117,35 @@ if (!$user->isLoggedIn()) {
 
 									if (!$ticket->error()) {
 										# si no hay error...
+										# tomar los involucrados por el email pedir sus datos clave tanto para el envio del email como para la tabla pivote
+										
+										/*$arrayEmail = explodeBy(';',Input::get('email'));
+										$data = [];
+
+										$invol = new Usuario();
+
+										if (count($arrayEmail) > 1) {
+											# code...
+											foreach ($arrayEmail as $email) {
+											 	# code...
+											 	$invol->find($email);
+											 	$data[] = $invol->data();
+											 } 
+							
+										} 
+
+										print_r($data);*/
+										
+
+										# 
+										#  guardar a los invol en tabla pivote
+										#  
+										#  procesar los email para enviarlos
+										#  
+										#  enviarlos
+										#  
+										#  redirigir al usuario en la viste 	   ver/{id_ticket}
+										#    
 										# reenviamos a la vista view
 										echo " Success!!!";
 										//Redirect::(someview)

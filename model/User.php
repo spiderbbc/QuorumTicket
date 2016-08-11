@@ -57,17 +57,32 @@ class Usuario
 	public function find($user = null)
 	{
 		# retorna los datos de un usuario..
-		if ($user) {
-			# si es distinto a null...
-			$field = (is_numeric($user)) ? 'id':'username';
-			$data  = $this->_db->get('users',array($field,'=',$user));
+		# cambiado el 10 agosto para que retorne informacion por el email
+		if (!filter_var($user,FILTER_VALIDATE_EMAIL)) {
+			# si no es un email ...
+				if ($user) {
+				# si es distinto a null...
+				$field = (is_numeric($user)) ? 'id':'username';
+				$data  = $this->_db->get('users',array($field,'=',$user));
 
-			if ($data->count()) {
-				# si hay datos..
-				$this->_data = $data->firts();
-				return true;
+				if ($data->count()) {
+					# si hay datos..
+					$this->_data = $data->firts();
+					return true;
+				}
 			}
+
+		} else {
+			# es un email ...
+			$data  = $this->_db->get('users',array('email','=',$user));
+
+				if ($data->count()) {
+					# si hay datos..
+					$this->_data = $data->firts();
+					return true;
+				}
 		}
+		
 
 		return false;
 	}

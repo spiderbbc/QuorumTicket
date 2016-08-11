@@ -44,7 +44,7 @@
                </div>
 
                <label for="titulo">Asunto</label>
-               <input type="text" name="titulo" id="titulo" class="form-control" value="" required="required" title="">
+               <input type="text" name="titulo" id="titulo" class="form-control" value="<?php echo Input::get('titulo') ?>" required="required" title="">
 
                <br>
                                 <label for="servicios">Servicios</label>
@@ -88,7 +88,7 @@
                 <br>
 
                 <label for="email">Email:</label>
-                <input class="form-control" type="text" placeholder="emails" id="email" name="email">
+                <input class="form-control" type="text" placeholder="emails" id="email" name="email" value="<?php echo Input::get('email') ?>">
 
                 <label for="msg">Texto</label>
                 <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard" >

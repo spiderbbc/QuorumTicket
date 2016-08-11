@@ -41,7 +41,9 @@
 
 - 09/08/2016: creacion de emailcontroller, para hacer pruebas unitarias de la libreria swiftmailer(vendor), se cambia el logo en la vista de login- creacion del logo por Katherin Castro.
 
-- 10/08/2016: helpers en sanitaze.php (explodeBy y implodeBy), pruebas para las validaciones del email.
+- 10/08/2016(office): helpers en sanitaze.php (explodeBy y implodeBy), pruebas para las validaciones del email.
+
+- 10/08/2016(home): nueva regla en validate.php(filter), se cambia el metodo find(User.php),crearcontroller con pasos comentados a seguir.
 
 
 ## License

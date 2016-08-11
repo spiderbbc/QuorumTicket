@@ -75,6 +75,29 @@ class Validate
 								$this->addError("El usuario:{$source} no esta disponible");
 							}
 							break;
+						case 'filter':
+							# validamos mediante filter_var con un filtro en especifico..
+							$arrayEmail = explodeBy(';',$source);
+							if (count($arrayEmail)> 1) {
+								# si hay mas de un email separado por ';' ..
+								# entonces recorremos
+								foreach ($arrayEmail as $email) {
+									# code...
+									if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+										# si no pasa el filtro no es email...
+										$this->addError("las siguientes direcciones email no son validas {$email}");
+									}
+								}
+							} else {
+								# code...
+								if (!filter_var($arrayEmail[0],FILTER_VALIDATE_EMAIL)) {
+									# solo validamos...
+									$this->addError("las siguientes direcciones email no son validas {$arrayEmail[0]}");
+								}
+							}
+							
+
+							break;
 						
 						default:
 							# code...
