@@ -110,7 +110,7 @@ class Ticket
 
 	}
 
-	private function last_insert_uuid()
+	public function last_insert_id()
 	{
 		return $this->_uuid;
 	}
@@ -131,6 +131,16 @@ class Ticket
 	{
 		# retorna la propiedad data...
 		return $this->_error;
+	}
+
+	public function saveInvol($id_user)
+	{
+		# persiste en la tabla ticket_user  ..
+		if ($this->_db->insert('ticket_users',array('id_user'=>$id_user,'id_ticket'=>$this->last_insert_id()))) {
+			# code...
+			return true;
+		}
+		return false;
 	}
 
 	private function invol_to_ticket($uuid)

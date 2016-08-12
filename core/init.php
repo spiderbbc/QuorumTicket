@@ -13,6 +13,15 @@ session_start();
 
 			),
 
+			'sendpulse' => array(
+
+				'smtp_server'  => 'smtp-pulse.com',
+				'smtp_port'    => '465',
+				'login_username' => 'ecastro@quorumtelecom.info',
+				'password'       => '4Ng4YG92iEk6MK',
+
+				),
+
 		'remenber' => array(
 
 			'cookie_name'  => 'hash',

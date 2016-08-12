@@ -118,34 +118,40 @@ if (!$user->isLoggedIn()) {
 									if (!$ticket->error()) {
 										# si no hay error...
 										# tomar los involucrados por el email pedir sus datos clave tanto para el envio del email como para la tabla pivote
-										
-										/*$arrayEmail = explodeBy(';',Input::get('email'));
-										$data = [];
+
+										$emailInvol = explodeBy(';',Input::get('email'));
+
+										$dataInvol = array();
 
 										$invol = new Usuario();
 
-										if (count($arrayEmail) > 1) {
-											# code...
-											foreach ($arrayEmail as $email) {
-											 	# code...
-											 	$invol->find($email);
-											 	$data[] = $invol->data();
-											 } 
-							
-										} 
+										foreach ($emailInvol as $email) {
+											# por cada email separado por el limitador ..
+											if ($invol->find($email)) {
+												# si existe en la bd ..
+												$dataInvol[$invol->data()->id] = $email;
+											}
+										}
 
-										print_r($data);*/
-										
 
-										# 
+
+										#
 										#  guardar a los invol en tabla pivote
-										#  
+										#
+										foreach (array_keys($dataInvol) as $id) {
+											# code...
+											if (!$ticket->saveInvol($id)) {
+												# code...
+												trigger_error("Upps .. no se proceso el email:{$dataInvol[$id]}");
+											}
+										}
+
 										#  procesar los email para enviarlos
-										#  
+										#
 										#  enviarlos
-										#  
+										#
 										#  redirigir al usuario en la viste 	   ver/{id_ticket}
-										#    
+										#
 										# reenviamos a la vista view
 										echo " Success!!!";
 										//Redirect::(someview)

@@ -82,7 +82,7 @@ class Usuario
 					return true;
 				}
 		}
-		
+
 
 		return false;
 	}
@@ -117,11 +117,11 @@ class Usuario
 	public function perfilInfobyUserId($user_id)
 	{
 		# retorna el perfil de un usuario...
-		
+
 		if ($this->find($user_id)) {
 			# code...
 			$perfil = $this->_db->query('
-				
+
 			select p.nombre AS nombre,
 		       d.nombre AS departamento,
 		       p.cargo  AS cargo,
@@ -131,7 +131,7 @@ class Usuario
 
 		       join qtelecom.users u on p.user_id = u.id
 		       join qtelecom.departamentos d on p.id_departamento = d.id
-       
+
        WHERE
             u.id = ?
 
@@ -177,6 +177,6 @@ class Usuario
 		return $this->_isLoggin;
 	}
 
-	
+
 
 	}
