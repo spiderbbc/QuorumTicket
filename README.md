@@ -45,6 +45,8 @@
 
 - 10/08/2016(home): nueva regla en validate.php(filter), se cambia el metodo find(User.php),crearcontroller con pasos comentados a seguir.
 
+- 12/08/2016(office): persistencia de datos en la tabla ticket_user
+
 
 ## License
 
