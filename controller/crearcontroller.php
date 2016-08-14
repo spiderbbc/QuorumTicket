@@ -1,7 +1,7 @@
 
 
 <?php
-
+#require_once 'core/init.php';
 
 $user = new Usuario();
 
@@ -35,9 +35,11 @@ if (!$user->isLoggedIn()) {
 			}
 		}
 
+	
 
 	# enviando un post
 	#
+	#var_dump(Token::check(Input::get('token')));
 	if (Input::exits()) {
 		# si hay un post ...
 			if (Token::check(Input::get('token'))) {
@@ -121,7 +123,9 @@ if (!$user->isLoggedIn()) {
 
 										$emailInvol = explodeBy(';',Input::get('email'));
 
-										$dataInvol = array();
+										$dataInvol= array();
+										$dataUser = array();
+
 
 										$invol = new Usuario();
 
@@ -129,7 +133,8 @@ if (!$user->isLoggedIn()) {
 											# por cada email separado por el limitador ..
 											if ($invol->find($email)) {
 												# si existe en la bd ..
-												$dataInvol[$invol->data()->id] = $email;
+												$dataInvol[$invol->data()->id]   = $email;
+												$dataUser[$invol->data()->email]  = $invol->data()->username;
 											}
 										}
 
@@ -147,6 +152,46 @@ if (!$user->isLoggedIn()) {
 										}
 
 										#  procesar los email para enviarlos
+										#  
+										$mandrillMail = Email::getInstance();
+
+										#$mandrillMail->setFrom(array($user->data()->username => $user->data()->email));
+										$mandrillMail->setFrom(array('ecastro@quorumtelecom.info'=>'Eduardo Xavier'));
+
+										#$mandrillMail->setTo($dataUser);
+										$mandrillMail->setTo(array('spiderbbc@gmail.com'=>'Xavier Castro'));
+
+										#print_r($user->data());
+
+										$supervisor = $invol->perfilInfobyGroupDepart($perfil->data()[0]->departamento,$user->data()->grupo);
+
+										#print_r($invol->data()[0]);
+										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) ) 
+										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
+										
+										if ($supervisor) {
+											# si tiene supervisor ..
+											$i = 0;
+											foreach ($invol->data()[$i] as $nombre => $email) {
+												# agregamos bbc..
+												$mandrillMail->setBbc(array($nombre => $email));
+												$i++;
+											}
+										}
+
+										$mandrillMail->setTitle("Quorum Ticket: Apertura de un tiket");
+										$mandrillMail->setBody("<h1>Quorum Ticket</h1>");
+
+										$emailPrepare = $mandrillMail->prepare("Buen dia se a aperturado un ticket");
+
+										if ($emailPrepare) {
+											# code...
+											if (!$mandrillMail->sendEmail($emailPrepare)->getError()) {
+											# code...
+												echo "Correo Enviados";
+											}
+										}
+
 										#
 										#  enviarlos
 										#
@@ -177,5 +222,9 @@ if (!$user->isLoggedIn()) {
 
 
 	}
+
+
+		# enviando token
+		$token = Token::generate();
 		require_once 'view/create.php';
 }

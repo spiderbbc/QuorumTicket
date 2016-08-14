@@ -1,5 +1,6 @@
 <?php
-
+#require_once 'class/Email.php';
+#require_once 'core/init.php';
 // require_once 'vendor/autoload.php';
 // require_once 'vendor/swiftmailer/swiftmailer/lib/swift_init.php';
 //
@@ -26,5 +27,22 @@
 //
 // echo $arrayEmail[0];
 
-// $email = Email::getInstance();
-// print_r($email);
+
+/*Email::getInstance();
+Email::getInstance();
+Email::getInstance();
+Email::getInstance();
+*/
+
+$mandrillMail = Email::getInstance();
+
+$sendMail = $mandrillMail->prepare($user->data()->name,$bbc,$dataUser,1);
+
+if (!$sendMail->send->error()) {
+	# code...
+	# redirect::to('some view');
+}else{
+	foreach ($sendMail->error() as $error) {
+		# code...
+	}
+}

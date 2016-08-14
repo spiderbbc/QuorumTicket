@@ -47,6 +47,8 @@
 
 - 12/08/2016(office): persistencia de datos en la tabla ticket_user
 
+- 14/08/2016(home): creacion de la clase Email, clase Usuario(perfilInfobyGroupDepart), nuevo backup de la db(qtelecom_14_08_2016.sql). 
+
 
 ## License
 

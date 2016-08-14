@@ -1,5 +1,6 @@
 <?php
-require_once 'model/User.php';
+#require_once 'core/init.php';
+#require_once 'model/User.php';
 /*echo "Login<br>";
 
 

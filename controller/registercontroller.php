@@ -1,6 +1,6 @@
 <?php
 
-
+#require_once 'core/init.php';
 	# si el token es igual al token de la variable de session...
 
 

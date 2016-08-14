@@ -1,7 +1,8 @@
 
 
 <?php
-require_once 'model/Ticket.php';
+#require_once 'core/init.php';
+/*require_once 'model/Ticket.php';*/
 
 $user = new Usuario();
 //var_dump($user->isLoggedIn());

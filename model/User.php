@@ -114,6 +114,49 @@ class Usuario
 		}
 	}
 
+	
+	public function perfilInfobyGroupDepart($depar = '',$grupo = '')
+	{
+		# code...
+		#if (isset($depar) && isset($grupo)) {
+			# code...
+			$supervisor = $this->_db->query('
+				
+			SELECT p.nombre AS nombre,
+		       u.email  AS email
+
+
+		    FROM qtelecom.perfiles p
+
+		       join qtelecom.users u on p.user_id = u.id
+		       join qtelecom.departamentos d on p.id_departamento = d.id
+
+
+       		WHERE
+            	d.nombre = ?     # departamento de quien crea el ticket o el usuario
+       		AND
+				u.grupo = ?  # grupo a quien pertenece el interesado
+
+
+				',array($depar,$grupo));
+		
+			if ($supervisor->count()) {
+					# code...
+					$this->_data = $supervisor->result();
+					return true;
+				}
+
+		#}
+		
+		return false;
+	}
+
+		
+	
+
+
+
+
 	public function perfilInfobyUserId($user_id)
 	{
 		# retorna el perfil de un usuario...

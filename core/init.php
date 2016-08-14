@@ -18,7 +18,7 @@ session_start();
 				'smtp_server'  => 'smtp-pulse.com',
 				'smtp_port'    => '465',
 				'login_username' => 'ecastro@quorumtelecom.info',
-				'password'       => '4Ng4YG92iEk6MK',
+				'login_password'       => '4Ng4YG92iEk6MK',
 
 				),
 
@@ -39,12 +39,16 @@ session_start();
 
 		);
 
+	require_once 'functions/sanitaze.php';
+	require_once 'vendor/autoload.php';
+	require_once 'model/User.php';
+	require_once 'model/Ticket.php';
+
+
 	spl_autoload_register(function($class)
 	{
 		# funcion anonima que carga las classes..
 		require_once 'class/'.$class.'.php';
 	});
 
-	require_once 'functions/sanitaze.php';
-	require_once 'model/User.php';
-	require_once 'model/Ticket.php';
+

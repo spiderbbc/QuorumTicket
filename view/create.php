@@ -105,7 +105,7 @@
 
                 });
                 </script>
-                <input type="hidden" name="token" value="<?php echo Token::generate() ?>">
+                <input type="hidden" name="token" value="<?php echo $token ?>">
 
 
 
@@ -132,7 +132,9 @@
             <?php #var_dump($perfil) ?>
             <div class="well">
               <?php if ($perfilInfo): ?>
-                <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
+              
+
+              <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
               <p>Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.</p>
               <p>Cargo: <em><?php echo $perfil->data()[0]->cargo;?></em>.</p>
               <p>Extencion: <em><?php echo $perfil->data()[0]->extencion; ?></em></p>
