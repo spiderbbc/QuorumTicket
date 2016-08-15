@@ -34,15 +34,49 @@ Email::getInstance();
 Email::getInstance();
 */
 
-$mandrillMail = Email::getInstance();
 
-$sendMail = $mandrillMail->prepare($user->data()->name,$bbc,$dataUser,1);
 
-if (!$sendMail->send->error()) {
-	# code...
-	# redirect::to('some view');
-}else{
-	foreach ($sendMail->error() as $error) {
-		# code...
-	}
-}
+
+
+// $mandrillMail = Email::getInstance();
+//
+// $sendMail = $mandrillMail->prepare($user->data()->name,$bbc,$dataUser,1);
+//
+// if (!$sendMail->send->error()) {
+// 	# code...
+// 	# redirect::to('some view');
+// }else{
+// 	foreach ($sendMail->error() as $error) {
+// 		# code...
+// 	}
+// }
+
+
+
+
+
+//  $emailClass = new Email();
+//
+// $arrayEmail = array('eduuccs@gmail.com' =>'eduardo','castro@gmail.com' =>'castro' );
+// echo count($arrayEmail);
+//  foreach ($arrayEmail as $nombre => $email) {
+//  	# code...
+// 	 $emailClass->setParamPrivate('to',array($nombre => $email));
+//  }
+//
+//  print_r($emailClass);
+// $user = new Usuario;
+// $arrayEmail = array();
+// $arrayEmail = get_object_vars($user->data());
+//
+// // $arrayEmail[$user->data()->username] = $user->data()->email ;
+// //
+// //
+// print_r($arrayEmail['username']);
+$array = array(
+    "foo" => "bar",
+    "bar" => "foo",
+    100   => -100,
+    -100  => 100,
+);
+print_r($array);

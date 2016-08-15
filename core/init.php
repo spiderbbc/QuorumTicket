@@ -16,7 +16,7 @@ session_start();
 			'sendpulse' => array(
 
 				'smtp_server'  => 'smtp-pulse.com',
-				'smtp_port'    => '465',
+				'smtp_port'    => '2525',
 				'login_username' => 'ecastro@quorumtelecom.info',
 				'login_password'       => '4Ng4YG92iEk6MK',
 
@@ -50,5 +50,3 @@ session_start();
 		# funcion anonima que carga las classes..
 		require_once 'class/'.$class.'.php';
 	});
-
-

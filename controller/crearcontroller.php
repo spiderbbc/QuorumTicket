@@ -35,7 +35,7 @@ if (!$user->isLoggedIn()) {
 			}
 		}
 
-	
+
 
 	# enviando un post
 	#
@@ -152,45 +152,83 @@ if (!$user->isLoggedIn()) {
 										}
 
 										#  procesar los email para enviarlos
-										#  
-										$mandrillMail = Email::getInstance();
+										#
+										#$mandrillMail = Email::getInstance();
 
 										#$mandrillMail->setFrom(array($user->data()->username => $user->data()->email));
-										$mandrillMail->setFrom(array('ecastro@quorumtelecom.info'=>'Eduardo Xavier'));
+										#$mandrillMail->setFrom(array('ecastro@quorumtelecom.info'=>'Eduardo Xavier'));
 
 										#$mandrillMail->setTo($dataUser);
-										$mandrillMail->setTo(array('spiderbbc@gmail.com'=>'Xavier Castro'));
+										#$mandrillMail->setTo(array('spiderbbc@gmail.com'=>'Xavier Castro'));
 
 										#print_r($user->data());
+
+										$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
+										 Config::get('sendpulse/smtp_port'));
+										$transport->setUsername(Config::get('sendpulse/login_username'));
+										$transport->setPassword(Config::get('sendpulse/login_password'));
+										$swift = Swift_Mailer::newInstance($transport);
+
+										$subject = "QTelecom: Apertura Ticket";
+										$text    = "Buen Dia, se a procesado un ticket ..";
+										$html = "<em>Mandrill habla <strong>HTML</strong></em>";
+
+
+
+
+
 
 										$supervisor = $invol->perfilInfobyGroupDepart($perfil->data()[0]->departamento,$user->data()->grupo);
 
 										#print_r($invol->data()[0]);
-										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) ) 
 										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
-										
+										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
+
 										if ($supervisor) {
 											# si tiene supervisor ..
 											$i = 0;
+											$manager = [];
 											foreach ($invol->data()[$i] as $nombre => $email) {
 												# agregamos bbc..
-												$mandrillMail->setBbc(array($nombre => $email));
+												#$mandrillMail->setBbc(array($nombre => $email));
+												$manager[$nombre] = $email;
 												$i++;
 											}
 										}
 
-										$mandrillMail->setTitle("Quorum Ticket: Apertura de un tiket");
-										$mandrillMail->setBody("<h1>Quorum Ticket</h1>");
+										$message = new Swift_Message($subject);
+										// $from = array($user->data()->username => $user->data()->email);
+										$arrayEmail = array();
+										$arrayEmail = get_object_vars($user->data());
 
-										$emailPrepare = $mandrillMail->prepare("Buen dia se a aperturado un ticket");
+										$username  = $arrayEmail['username'];
+										$emailuser = $arrayEmail['email'];
 
-										if ($emailPrepare) {
-											# code...
-											if (!$mandrillMail->sendEmail($emailPrepare)->getError()) {
-											# code...
-												echo "Correo Enviados";
-											}
-										}
+										$message->setFrom(array($username => $emailuser));
+										$message->setBody($html, 'text/html');
+										$to = array('ecastro@openmailbox.org'=>'Eduardo Xavier');
+										$message->setTo($to);
+										$message->addPart($text, 'text/plain');
+
+										if ($recipients = $swift->send($message, $failures))
+													{
+													 echo 'Message successfully sent!';
+													} else {
+													 echo "There was an error:\n";
+													 print_r($failures);
+													}
+										// $mandrillMail->setTitle("Quorum Ticket: Apertura de un tiket");
+										// $mandrillMail->setBody("<h1>Quorum Ticket</h1>");
+										//
+										// $emailPrepare = $mandrillMail->prepare("Buen dia se a aperturado un ticket");
+										//
+										// if ($emailPrepare) {
+										// 	# code...
+										// 	if (!$mandrillMail->sendEmail($emailPrepare)->getError()) {
+										// 	# code...
+										// 		echo "Correo Enviados";
+										// 	}
+										// }
 
 										#
 										#  enviarlos
