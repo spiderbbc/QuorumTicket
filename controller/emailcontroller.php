@@ -73,10 +73,13 @@ Email::getInstance();
 // //
 // //
 // print_r($arrayEmail['username']);
-$array = array(
-    "foo" => "bar",
-    "bar" => "foo",
-    100   => -100,
-    -100  => 100,
+$user = new Usuario;
+
+$to = array(
+ $user->data()->email  => $user->data()->username,
+ 'recipient2@example2.com' => 'Recipient2 Name'
 );
-print_r($array);
+//print_r($to);
+
+$from = array($user->data()->email => $user->data()->username);
+print_r($from)."<br>";

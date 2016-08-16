@@ -123,7 +123,9 @@ if (!$user->isLoggedIn()) {
 
 										$emailInvol = explodeBy(';',Input::get('email'));
 
+										# dataInvol = [id_user => correo del usuario] si existe
 										$dataInvol= array();
+										# dataUser  = [correo del usuario => username usuario] 
 										$dataUser = array();
 
 
@@ -139,7 +141,8 @@ if (!$user->isLoggedIn()) {
 										}
 
 
-
+										#print_r($dataUser); Array ( [eduuccs@gmail.com] => chateing [ecastro@openmailbox.org] => xcastro )
+										
 										#
 										#  guardar a los invol en tabla pivote
 										#
@@ -151,17 +154,39 @@ if (!$user->isLoggedIn()) {
 											}
 										}
 
+										# procesar supervisores de quien crea el ticket
+										# 
+										# 
+										// si no tiene  datos explota
+
+										if ($perfilInfo) {
+											# code...
+											$supervisor = $invol->perfilInfobyGroupDepart($perfil->data()[0]->departamento,2);
+
+											#print_r($invol->data()[0]);
+											#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
+											
+
+											if ($supervisor) {
+												# si tiene supervisor ..
+												$i = 0;
+												$manager = [];
+												foreach ($invol->data() as $values[$i]) {
+													# agregamos bbc..
+													#$mandrillMail->setBbc(array($nombre => $email));
+													$manager[$values[$i]->email] = $values[$i]->nombre;
+													/*print_r($values[$i]->nombre);*/
+
+													$i++;
+												}
+											}
+										}
+
+
+
 										#  procesar los email para enviarlos
 										#
-										#$mandrillMail = Email::getInstance();
-
-										#$mandrillMail->setFrom(array($user->data()->username => $user->data()->email));
-										#$mandrillMail->setFrom(array('ecastro@quorumtelecom.info'=>'Eduardo Xavier'));
-
-										#$mandrillMail->setTo($dataUser);
-										#$mandrillMail->setTo(array('spiderbbc@gmail.com'=>'Xavier Castro'));
-
-										#print_r($user->data());
+										
 
 										$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
 										 Config::get('sendpulse/smtp_port'));
@@ -176,38 +201,27 @@ if (!$user->isLoggedIn()) {
 
 
 
-
-
-										$supervisor = $invol->perfilInfobyGroupDepart($perfil->data()[0]->departamento,$user->data()->grupo);
-
-										#print_r($invol->data()[0]);
-										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
-										#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
-
-										if ($supervisor) {
-											# si tiene supervisor ..
-											$i = 0;
-											$manager = [];
-											foreach ($invol->data()[$i] as $nombre => $email) {
-												# agregamos bbc..
-												#$mandrillMail->setBbc(array($nombre => $email));
-												$manager[$nombre] = $email;
-												$i++;
-											}
-										}
+										
 
 										$message = new Swift_Message($subject);
-										// $from = array($user->data()->username => $user->data()->email);
-										$arrayEmail = array();
-										$arrayEmail = get_object_vars($user->data());
+										
 
-										$username  = $arrayEmail['username'];
-										$emailuser = $arrayEmail['email'];
+										$from = array($user->data()->email => $user->data()->username);
+										
 
-										$message->setFrom(array($username => $emailuser));
+										
+
+										$message->setFrom($from);
 										$message->setBody($html, 'text/html');
-										$to = array('ecastro@openmailbox.org'=>'Eduardo Xavier');
-										$message->setTo($to);
+										#$dataUser = array('ecastro@openmailbox.org'=>'Eduardo Xavier');
+										
+										$message->setTo($dataUser);
+										#print_r($manager); #Array ( [Raul Piedra] => eduucss@gmail.com )
+										if (isset($manager)) {
+											# si tenemos datos del supervisor ...
+											$message->setBcc($manager);
+										}
+										
 										$message->addPart($text, 'text/plain');
 
 										if ($recipients = $swift->send($message, $failures))
@@ -217,23 +231,7 @@ if (!$user->isLoggedIn()) {
 													 echo "There was an error:\n";
 													 print_r($failures);
 													}
-										// $mandrillMail->setTitle("Quorum Ticket: Apertura de un tiket");
-										// $mandrillMail->setBody("<h1>Quorum Ticket</h1>");
-										//
-										// $emailPrepare = $mandrillMail->prepare("Buen dia se a aperturado un ticket");
-										//
-										// if ($emailPrepare) {
-										// 	# code...
-										// 	if (!$mandrillMail->sendEmail($emailPrepare)->getError()) {
-										// 	# code...
-										// 		echo "Correo Enviados";
-										// 	}
-										// }
-
-										#
-										#  enviarlos
-										#
-										#  redirigir al usuario en la viste 	   ver/{id_ticket}
+										
 										#
 										# reenviamos a la vista view
 										echo " Success!!!";
