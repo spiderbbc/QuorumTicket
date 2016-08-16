@@ -49,9 +49,11 @@
 
 - 14/08/2016(home): creacion de la clase Email, clase Usuario(perfilInfobyGroupDepart), nuevo backup de la db(qtelecom_14_08_2016.sql).
 
-- 15/08/2016(office): elaborando el proceso de envio de email a los involucrados en un ticket. 
+- 15/08/2016(office): elaborando el proceso de envio de email a los involucrados en un ticket.
 
 - 15/08/2016(home): se envia emails a los involucrados en un ticket, copia oculta para el supervisor de quien crea el ticket --realizando pruebas --.
+
+-16/08/2016(Office): Realizando pruebas con Email ...
 
 ## License
 

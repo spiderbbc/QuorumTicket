@@ -125,7 +125,7 @@ if (!$user->isLoggedIn()) {
 
 										# dataInvol = [id_user => correo del usuario] si existe
 										$dataInvol= array();
-										# dataUser  = [correo del usuario => username usuario] 
+										# dataUser  = [correo del usuario => username usuario]
 										$dataUser = array();
 
 
@@ -142,7 +142,7 @@ if (!$user->isLoggedIn()) {
 
 
 										#print_r($dataUser); Array ( [eduuccs@gmail.com] => chateing [ecastro@openmailbox.org] => xcastro )
-										
+
 										#
 										#  guardar a los invol en tabla pivote
 										#
@@ -155,8 +155,8 @@ if (!$user->isLoggedIn()) {
 										}
 
 										# procesar supervisores de quien crea el ticket
-										# 
-										# 
+										#
+										#
 										// si no tiene  datos explota
 
 										if ($perfilInfo) {
@@ -165,7 +165,7 @@ if (!$user->isLoggedIn()) {
 
 											#print_r($invol->data()[0]);
 											#Array ( [0] => stdClass Object ( [nombre] => Thais Ravelo [email] => moralesx@hotmail.com ) )
-											
+
 
 											if ($supervisor) {
 												# si tiene supervisor ..
@@ -186,7 +186,7 @@ if (!$user->isLoggedIn()) {
 
 										#  procesar los email para enviarlos
 										#
-										
+
 
 										$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
 										 Config::get('sendpulse/smtp_port'));
@@ -194,34 +194,38 @@ if (!$user->isLoggedIn()) {
 										$transport->setPassword(Config::get('sendpulse/login_password'));
 										$swift = Swift_Mailer::newInstance($transport);
 
-										$subject = "QTelecom: Apertura Ticket";
+										$subject = "QTelecom Apertura Ticket: ".$ticket->last_insert_id();
 										$text    = "Buen Dia, se a procesado un ticket ..";
-										$html = "<em>Mandrill habla <strong>HTML</strong></em>";
+										$html = '<h1>'.Input::get('titulo').'</h1><br>
+														<em>'.Input::get('msg').'</em><br>
+														Acceder bajo el Siguiente Link <a href="http://localhost/QTelecom/?accion=ver&valor='.$ticket->last_insert_id().'">'.$ticket->last_insert_id().'</a>';
 
 
 
 
-										
+
 
 										$message = new Swift_Message($subject);
-										
+
 
 										$from = array($user->data()->email => $user->data()->username);
-										
 
-										
+
+
 
 										$message->setFrom($from);
 										$message->setBody($html, 'text/html');
 										#$dataUser = array('ecastro@openmailbox.org'=>'Eduardo Xavier');
-										
+
 										$message->setTo($dataUser);
+
+										$message->setCc($from);
 										#print_r($manager); #Array ( [Raul Piedra] => eduucss@gmail.com )
 										if (isset($manager)) {
 											# si tenemos datos del supervisor ...
 											$message->setBcc($manager);
 										}
-										
+
 										$message->addPart($text, 'text/plain');
 
 										if ($recipients = $swift->send($message, $failures))
@@ -231,7 +235,7 @@ if (!$user->isLoggedIn()) {
 													 echo "There was an error:\n";
 													 print_r($failures);
 													}
-										
+
 										#
 										# reenviamos a la vista view
 										echo " Success!!!";
