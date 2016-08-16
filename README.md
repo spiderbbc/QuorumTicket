@@ -51,9 +51,9 @@
 
 - 15/08/2016(office): elaborando el proceso de envio de email a los involucrados en un ticket.
 
-- 15/08/2016(home): se envia emails a los involucrados en un ticket, copia oculta para el supervisor de quien crea el ticket --realizando pruebas --.
+- 15/08/2016(home): se envia emails a los involucrados en un ticket, copia oculta para el supervisor de quien crea el ticket realizando pruebas.
 
--16/08/2016(Office): Realizando pruebas con Email ...
+- 16/08/2016(Office): Realizando pruebas con Email ...
 
 ## License
 
