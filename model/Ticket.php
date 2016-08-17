@@ -14,10 +14,10 @@
 class Ticket
 {
 	private $_db,
-			$_data,
-			$_uuid,
-			$_invol = array(),
-			$_error = false;
+					$_data,
+					$_uuid,
+					$_invol = array(),
+					$_error = false;
 
 	function __construct()
 	{
@@ -112,6 +112,7 @@ class Ticket
 
 	public function last_insert_id()
 	{
+
 		return $this->_uuid;
 	}
 
@@ -151,8 +152,25 @@ class Ticket
 
 
 
-	private function find($value)
+	public function find($field = '',$value = '')
 	{
-		# code...
+		# retorna un ticket por uui o id..
+		if (empty($field) && empty($value)) {
+			# code...
+			trigger_error('bad message ...');
+		}
+
+		$data = $this->_db->get('tickets',array($field,'=',$value));
+				if (!$data->count()) {
+					# si no hay datos ..
+					return false;
+				}else {
+					# si hay datos ....
+					return $data->result();
+				}
+
+
 	}
+
+
 }

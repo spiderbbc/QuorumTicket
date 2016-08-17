@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 $user = new Usuario();
 
@@ -112,13 +112,13 @@ if (Input::exits()) {
 
 						));
 
-					} 	
+					}
 
 						catch (Exception $e) {
 							echo $e->getMessage();
-			
+
 						}
-			
+
 
 					if (!$ticket->error()) {
 										# si no hay error...
@@ -185,7 +185,11 @@ if (Input::exits()) {
 											}
 										}
 
-
+										# Solicitando id que sera el numero de ticket visible para los usuario
+										$id   = $ticket->last_insert_id();
+										# Solicitando el uuid de ticket creado mediante last_insert()
+										# uuid sera utilizado para la url E.j: http:nombre/?accion=ver&valor=57ade21a65c o con .htacces http:nombre/q-ver/v-57ade21a65c
+										$data = $ticket->find('id',$id);
 
 										#  procesar los email para enviarlos
 										#
@@ -201,7 +205,7 @@ if (Input::exits()) {
 										$text    = "Buen Dia, se a procesado un ticket ..";
 										$html = '<h1>'.Input::get('titulo').'</h1><br>
 														<em>'.Input::get('msg').'</em><br>
-														Acceder bajo el Siguiente Link <a href="http://localhost/QTelecom/?accion=ver&valor='.$ticket->last_insert_id().'">'.$ticket->last_insert_id().'</a>';
+														Acceder bajo el Siguiente Link <a href="http://localhost/QTelecom/?accion=ver&valor='.$data[0]->uuid.'">'.$ticket->last_insert_id().'</a>';
 
 
 
@@ -233,7 +237,7 @@ if (Input::exits()) {
 
 										if ($recipients = $swift->send($message, $failures))
 													{
-													 echo 'Message successfully sent!';
+													Redirect::to('?accion=ver&valor='.$data[0]->uuid);
 													} else {
 													 echo "There was an error:\n";
 													 print_r($failures);

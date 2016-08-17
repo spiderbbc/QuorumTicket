@@ -73,13 +73,18 @@ Email::getInstance();
 // //
 // //
 // print_r($arrayEmail['username']);
-$user = new Usuario;
+// $user = new Usuario;
 
-$to = array(
- $user->data()->email  => $user->data()->username,
- 'recipient2@example2.com' => 'Recipient2 Name'
-);
-//print_r($to);
+// $to = array(
+//  $user->data()->email  => $user->data()->username,
+//  'recipient2@example2.com' => 'Recipient2 Name'
+// );
+// //print_r($to);
+//
+// $from = array($user->data()->email => $user->data()->username);
+// print_r($from)."<br>";
 
-$from = array($user->data()->email => $user->data()->username);
-print_r($from)."<br>";
+$ticket = new Ticket();
+
+$data   = $ticket->find('id','7233');
+print_r($data) ;
