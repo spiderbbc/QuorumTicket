@@ -55,6 +55,8 @@
 
 - 16/08/2016(Office): Realizando pruebas con Email ...
 
+- 16/08/2016(Home): Refactorizacion de crearcontroller ...
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

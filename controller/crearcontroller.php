@@ -1,46 +1,43 @@
 
-
-<?php
-#require_once 'core/init.php';
+<?php 
 
 $user = new Usuario();
 
 if (!$user->isLoggedIn()) {
-	# code...
+	# si no esta logeado ...
 	Redirect::to('?accion=login');
-}else{
-
-	# datos para informacion del perfil del autor
-	#
-
-	$perfil 	= new Usuario();
-	$perfilInfo = $perfil->perfilInfobyUserId($user->data()->id);
+}
 
 
 
-	# datos para las opciones del formulario
-	#
+# datos para informacion del perfil del autor
+#
 
-	$db = DB::getInstance();
-	$datos = [];
+$perfil 	= new Usuario();
+$perfilInfo = $perfil->perfilInfobyUserId($user->data()->id);
 
-	$arrayParams = array( 1 =>'servicios',2 =>'gravedad',3 =>'afectado');
 
-		foreach ($arrayParams as $field => $value) {
+$db = DB::getInstance();
+$datos = [];
 
-			$data   = $db->getByName(array('id','nombre'),$value);
-			if ($data) {
+# datos para las opciones del formulario
+#
+
+$arrayParams = array( 1 =>'servicios',2 =>'gravedad',3 =>'afectado');
+
+	foreach ($arrayParams as $field => $value) {
+
+		$data   = $db->getByName(array('id','nombre'),$value);
+		if ($data) {
 				# code...
 				$datos[$value] = $db->result();
-			}
 		}
+	}
 
-
-
-	# enviando un post
-	#
-	#var_dump(Token::check(Input::get('token')));
-	if (Input::exits()) {
+# enviando un post
+#
+#var_dump(Token::check(Input::get('token')));
+if (Input::exits()) {
 		# si hay un post ...
 			if (Token::check(Input::get('token'))) {
 				# code...
@@ -82,8 +79,10 @@ if (!$user->isLoggedIn()) {
 
 
 				));
+			}
 
-				if ($validate->passed()) {
+
+			if ($validate->passed()) {
 					# procesamos a guardar...
 					// echo "Succes";
 
@@ -113,11 +112,15 @@ if (!$user->isLoggedIn()) {
 
 						));
 
-					} catch (Exception $e) {
-						echo $e->getMessage();
-					}
+					} 	
 
-									if (!$ticket->error()) {
+						catch (Exception $e) {
+							echo $e->getMessage();
+			
+						}
+			
+
+					if (!$ticket->error()) {
 										# si no hay error...
 										# tomar los involucrados por el email pedir sus datos clave tanto para el envio del email como para la tabla pivote
 
@@ -241,12 +244,13 @@ if (!$user->isLoggedIn()) {
 										echo " Success!!!";
 										//Redirect::(someview)
 
-									}else {
-										# hay un error al guardar
-										Session::flash('error','Upps .. problemas al crear el ticket');
-										Redirect::to(404);
-										// no dispara el mensaje en el error page --
-									}
+					}else {
+					# hay un error al guardar
+					Session::flash('error','Upps .. problemas al crear el ticket');
+					Redirect::to(404);
+					// no dispara el mensaje en el error page --
+						}
+
 
 
 			}else{
@@ -257,14 +261,10 @@ if (!$user->isLoggedIn()) {
 
 			}
 
-			# reparar esta doble instancia
-			require_once 'view/create.php';
+# enviando token
+$token = Token::generate();
+require_once 'view/create.php';
 
 
-	}
 
-
-		# enviando token
-		$token = Token::generate();
-		require_once 'view/create.php';
-}
+ ?>
