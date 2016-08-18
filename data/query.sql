@@ -98,3 +98,20 @@ select p.nombre AS nombre,
             d.id = 3     # departamento de quien crea el ticket o el usuario
        AND
 			      u.grupo = 2  # grupo a quien pertenece el interesado
+
+#
+# retorna si un usuario esta involucrado en un determinado ticket
+#
+
+select t_u.id_ticket AS id_ticket,
+       u.id  AS id
+
+
+       FROM qtelecom.ticket_users  t_u
+
+       join qtelecom.users u on t_u.id_user = u.id
+       
+       WHERE
+            t_u.id_ticket = 72  # id del ticket
+       AND
+            u.id = 32           # id del usuario

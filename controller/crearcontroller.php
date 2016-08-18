@@ -133,6 +133,10 @@ if (Input::exits()) {
 
 
 										$invol = new Usuario();
+										# involucramos al usuario quien crea el ticket;;
+										# 
+										# 
+										$dataInvol[$user->data()->id] = $user->data()->email;
 
 										foreach ($emailInvol as $email) {
 											# por cada email separado por el limitador ..

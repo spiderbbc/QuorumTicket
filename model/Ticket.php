@@ -144,10 +144,7 @@ class Ticket
 		return false;
 	}
 
-	private function invol_to_ticket($uuid)
-	{
-		# retornara los involucrados en un ticket por uuid..
-	}
+	
 
 
 
@@ -170,6 +167,20 @@ class Ticket
 				}
 
 
+	}
+
+	public function isInvol($id_user)
+	{
+		# retorna si un usuario esta involucrado en el ticket ..
+		if ($id_user) {
+			# si hay id del usuario ..
+			$this->_db->get('ticket_users',array(''))
+		}
+	}
+
+	private function invol_to_ticket($uuid)
+	{
+		# retornara los involucrados en un ticket por uuid..
 	}
 
 
