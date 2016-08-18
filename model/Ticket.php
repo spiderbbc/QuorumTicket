@@ -144,7 +144,7 @@ class Ticket
 		return false;
 	}
 
-	
+
 
 
 
@@ -169,13 +169,34 @@ class Ticket
 
 	}
 
-	public function isInvol($id_user)
+	public function isInvol($id_ticket,$id_user)
 	{
 		# retorna si un usuario esta involucrado en el ticket ..
-		/*if ($id_user) {
+		if ($id_user) {
 			# si hay id del usuario ..
-			$this->_db->get('ticket_users',array(''));
-		}*/
+		$data =	$this->_db->query('
+
+			SELECT t_u.id_ticket AS id_ticket,
+		 				 u.id  AS id
+			FROM qtelecom.ticket_users  t_u
+
+		 JOIN qtelecom.users u on t_u.id_user = u.id
+
+		 WHERE
+					t_u.id_ticket = ?  # id del ticket
+		 AND
+					u.id = ?           # id del usuario
+
+
+			',array($id_ticket,$id_user));
+
+				if ($data->count()) {
+					# si hay datos ..
+					return true;
+				}
+
+		}
+		return false;
 	}
 
 	private function invol_to_ticket($uuid)

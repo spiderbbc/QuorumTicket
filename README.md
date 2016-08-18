@@ -61,6 +61,8 @@
 
 - 17/08/2016(Home): maqueteando el template view, persistencia del usuario quien crea el ticket en la tabla ticket_user, controlando el GET en vercontroller.php ...
 
+- 18/08/2016(Office): se valida si un ticket es privado y el usuario no esta involucrado en el ticket se redireciona al error page - se diseño el favicon para el proyecto en static/img...
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

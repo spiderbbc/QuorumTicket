@@ -114,14 +114,14 @@ class Usuario
 		}
 	}
 
-	
+
 	public function perfilInfobyGroupDepart($depar = '',$grupo = '')
 	{
 		# code...
 		#if (isset($depar) && isset($grupo)) {
 			# code...
 			$supervisor = $this->_db->query('
-				
+
 			SELECT p.nombre AS nombre,
 		       u.email  AS email
 
@@ -139,7 +139,7 @@ class Usuario
 
 
 				',array($depar,$grupo));
-		
+
 			if ($supervisor->count()) {
 					# code...
 					$this->_data = $supervisor->result();
@@ -147,12 +147,12 @@ class Usuario
 				}
 
 		#}
-		
+
 		return false;
 	}
 
-		
-	
+
+
 
 
 
