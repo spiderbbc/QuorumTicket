@@ -135,7 +135,7 @@ class Usuario
        		WHERE
             	d.nombre = ?     # departamento de quien crea el ticket o el usuario
        		AND
-				u.grupo = ?  # grupo a quien pertenece el interesado
+				u.grupo = ?      # grupo a quien pertenece el interesado
 
 
 				',array($depar,$grupo));

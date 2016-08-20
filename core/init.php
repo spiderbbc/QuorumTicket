@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+setlocale(LC_TIME,"es_VE.UTF-8");
 
 	$GLOBALS['config'] = array(
 

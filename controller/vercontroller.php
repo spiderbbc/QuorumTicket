@@ -10,6 +10,8 @@ if (!$user->isLoggedIn()) {
 
 # verificamos si recibimos un GET y si el GET tiene valor = uuid
 $request = (Input::exits('GET') && !empty(Input::get('valor'))) ? true : false ;
+#var_dump($request);
+
 
 # instanciamos ticket
 $ticket     = new Ticket();
@@ -27,7 +29,7 @@ if (!$requestVal) {
 
 if ($requestVal[0]->private) {
 	# 1 = privado; 0 = publico ...
-	if (!$ticket->isInvol($user->data()->id,$requestVal[0]->id)) {
+	if (!$ticket->isInvol($requestVal[0]->id,$user->data()->id)) {
 		# si no esta involucrado lo sentimos ...
 		Session::flash('error','Upps.. no tiene permiso para visualizar este ticket ..');
 		Redirect::to('404');
@@ -35,11 +37,21 @@ if ($requestVal[0]->private) {
 
 }
 
-#print_r($requestVal[0]->private);
+#print_r($ticket->isInvol($user->data()->id,$requestVal[0]->id));
 
 
+# datos para informacion del perfil del autor
+#
 
-#var_dump($request);
+$perfil 	= new Usuario();
+$perfilInfo = $perfil->perfilInfobyUserId($user->data()->id);
+
+
+if (Input::exits()) {
+	# code...
+	echo "Es un Post";
+}
+
 
 require_once 'view/view.php';
 

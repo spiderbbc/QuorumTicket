@@ -74,7 +74,7 @@
         <tr>
 
         <td><?php echo $value->numero ?>
-        <a class="btn btn-default btn-xs" href="/QTelecom/q-ver/v-<?php echo $value->numero ?>" role="button">Ingresar</a>
+        <a class="btn btn-default btn-xs" href="/QTelecom/?accion=ver&valor=<?php echo $value->uuid ?>" role="button">Ingresar</a>
         </td>
         <td><?php echo $value->titulo ?></td>
         <td><?php echo $value->estatus ?></td>

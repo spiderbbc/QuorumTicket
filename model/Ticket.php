@@ -74,6 +74,7 @@ class Ticket
 		$tickets = $this->_db->query('
 
 	  SELECT t.id AS numero,
+      t.uuid AS uuid,
       t.titulo,
       s.nombre AS estatus,
       u.username AS autor,
@@ -176,16 +177,16 @@ class Ticket
 			# si hay id del usuario ..
 		$data =	$this->_db->query('
 
-			SELECT t_u.id_ticket AS id_ticket,
+		SELECT t_u.id_ticket AS id_ticket,
 		 				 u.id  AS id
-			FROM qtelecom.ticket_users  t_u
+		FROM qtelecom.ticket_users  t_u
 
-		 JOIN qtelecom.users u on t_u.id_user = u.id
+		JOIN qtelecom.users u on t_u.id_user = u.id
 
-		 WHERE
-					t_u.id_ticket = ?  # id del ticket
-		 AND
-					u.id = ?           # id del usuario
+		WHERE
+				t_u.id_ticket = ?  # id del ticket
+		AND
+				u.id = ?           # id del usuario
 
 
 			',array($id_ticket,$id_user));
@@ -196,7 +197,7 @@ class Ticket
 				}
 
 		}
-		return false;
+		return $data->count();
 	}
 
 	private function invol_to_ticket($uuid)

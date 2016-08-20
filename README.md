@@ -41,17 +41,17 @@
 
 - 09/08/2016: creacion de emailcontroller, para hacer pruebas unitarias de la libreria swiftmailer(vendor), se cambia el logo en la vista de login- creacion del logo por Katherin Castro.
 
-- 10/08/2016(office): helpers en sanitaze.php (explodeBy y implodeBy), pruebas para las validaciones del email.
+- 10/08/2016(Office): helpers en sanitaze.php (explodeBy y implodeBy), pruebas para las validaciones del email.
 
-- 10/08/2016(home): nueva regla en validate.php(filter), se cambia el metodo find(User.php),crearcontroller con pasos comentados a seguir.
+- 10/08/2016(Home): nueva regla en validate.php(filter), se cambia el metodo find(User.php),crearcontroller con pasos comentados a seguir.
 
-- 12/08/2016(office): persistencia de datos en la tabla ticket_user
+- 12/08/2016(Office): persistencia de datos en la tabla ticket_user
 
-- 14/08/2016(home): creacion de la clase Email, clase Usuario(perfilInfobyGroupDepart), nuevo backup de la db(qtelecom_14_08_2016.sql).
+- 14/08/2016(Home): creacion de la clase Email, clase Usuario(perfilInfobyGroupDepart), nuevo backup de la db(qtelecom_14_08_2016.sql).
 
-- 15/08/2016(office): elaborando el proceso de envio de email a los involucrados en un ticket.
+- 15/08/2016(Office): elaborando el proceso de envio de email a los involucrados en un ticket.
 
-- 15/08/2016(home): se envia emails a los involucrados en un ticket, copia oculta para el supervisor de quien crea el ticket realizando pruebas.
+- 15/08/2016(Home): se envia emails a los involucrados en un ticket, copia oculta para el supervisor de quien crea el ticket realizando pruebas.
 
 - 16/08/2016(Office): Realizando pruebas con Email ...
 
@@ -61,7 +61,9 @@
 
 - 17/08/2016(Home): maqueteando el template view, persistencia del usuario quien crea el ticket en la tabla ticket_user, controlando el GET en vercontroller.php ...
 
-- 18/08/2016(Office): se valida si un ticket es privado y el usuario no esta involucrado en el ticket se redireciona al error page - se diseño el favicon para el proyecto en static/img...
+- 18/08/2016(Office): se valida si un ticket es privado y el usuario no esta involucrado en el ticket se redireciona al error page - se diseño el favicon para el proyecto en (static/img)...
+
+- 19/08/2016(Home): se muestra informacion del ticket en view template - integracion con AngularJS v1.2.29 (static/js) - seteado el setlocale para mostrar la fechas en formato (es_VE.UTF-8)...
 
 ## License
 
