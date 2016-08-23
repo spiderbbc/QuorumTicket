@@ -73,19 +73,21 @@ class Ticket
 		$this->_error = false;
 		$tickets = $this->_db->query('
 
-	  SELECT t.id AS numero,
-      t.uuid AS uuid,
-      t.titulo,
-      s.nombre AS estatus,
-      u.username AS autor,
-      serv.nombre AS servicios,
-      t.date_added AS creado,
-      t.date_update AS actualizado
-      from qtelecom.tickets t
+		SELECT t.id AS numero,
+		      t.uuid AS uuid,
+		      t.titulo,
+		      s.nombre AS estatus,
+		      u.username AS autor,
+		      serv.nombre AS servicios,
+		      t.date_added AS creado,
+		      t.date_update AS actualizado
+		      from qtelecom.tickets t
 
-      join qtelecom.users u on t.user_id = u.id
-      join qtelecom.servicios serv on t.id_servicios = serv.id
-      join qtelecom.status s on t.id_status = s.id '
+		      join qtelecom.users u on t.user_id = u.id
+		      join qtelecom.servicios serv on t.id_servicios = serv.id
+		      join qtelecom.status s on t.id_status = s.id
+
+		      WHERE t.private = 0 '
       );
 
 		if ($tickets->count()) {

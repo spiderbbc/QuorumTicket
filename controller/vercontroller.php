@@ -49,7 +49,7 @@ $perfilInfo = $perfil->perfilInfobyUserId($user->data()->id);
 
 if (Input::exits()) {
 	# code...
-	echo "Es un Post";
+
 }
 
 

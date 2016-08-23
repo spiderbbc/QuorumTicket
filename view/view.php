@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="es-VE">
+<html lang="es-VE" ng-app="postApp">
   <title>Ver Ticket</title>
   <?php include_once 'templates/header.php' ?>
 
-<body ng-app ng-controller="TicketController">
+<body ng-controller="postController">
 
 
    <div class="container">
@@ -33,9 +33,9 @@
            <h2 class="blog-post-title"><?php echo $requestVal[0]->titulo ?></h2>
            <p class="blog-post-meta"><?php echo strftime("%A, %d de %B de %Y %H:%M",strtotime($requestVal[0]->date_update)) ?><a href="#"> <?php echo $perfil->data()[0]->nombre;  ?></a></p>
   <?php  ?>
-  
+
               <?php echo $requestVal[0]->msg ?>
-            
+
           <br>
               <br>
             <div class="row">
@@ -48,15 +48,15 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
             </div>
-          
 
-          <center><button type="button" class="btn btn-default" ng-click="ShowForm()" ng-hide="FormVisibility">Responder</button></center> 
+
+          <center><button type="button" class="btn btn-default" ng-click="ShowForm()" ng-hide="FormVisibility">Responder</button></center>
 
           <div class="row" ng-show="FormVisibility">
-            <form action="" method="POST" class="form-horizontal" role="form">
-              
+            <form action="" method="POST" class="form-horizontal" role="form" ng-submit="submitForm()">
+
             <label for="msg">Texto</label>
-                <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard" >
+                <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard">
 
                 </textarea>
                 <script>
@@ -70,11 +70,11 @@
 
                 });
                 </script>
-              
+
           <input type="hidden" name="token" id="inputToken" class="form-control" value="<?php echo Token::generate() ?>">
               <div class="form-group">
                 <div class="col-sm-12">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar" ng-submit="">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
                     Responder</button>
                   </div>
               </div>
@@ -93,7 +93,7 @@
             <?php #var_dump($perfil) ?>
             <div class="well">
               <?php if ($perfilInfo): ?>
-              
+
 
               <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
               <p>Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.</p>

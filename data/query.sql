@@ -54,7 +54,9 @@ join qtelecom.afectado a on t.id_afectado = a.id
 
 
 # query para datable
-select t.id AS numero,
+# para mostrar todos los tickets con estatus publico
+SELECT t.id AS numero,
+      t.uuid AS uuid,
       t.titulo,
       s.nombre AS estatus,
       u.username AS autor,
@@ -66,6 +68,8 @@ select t.id AS numero,
       join qtelecom.users u on t.user_id = u.id
       join qtelecom.servicios serv on t.id_servicios = serv.id
       join qtelecom.status s on t.id_status = s.id
+
+      WHERE t.private = 0
 
 # informacion de un usuario
 select p.nombre AS nombre,
@@ -110,7 +114,7 @@ select t_u.id_ticket AS id_ticket,
        FROM qtelecom.ticket_users  t_u
 
        join qtelecom.users u on t_u.id_user = u.id
-       
+
        WHERE
             t_u.id_ticket = 72  # id del ticket
        AND
