@@ -46,8 +46,8 @@ if (Input::exits()) {
 
 						'titulo' => array(
 							'required'=> true,
-							'min'     => 5,
-							'max'     => 150,
+							'min'     => 15,
+							//'max'     => 150,
 
 						),
 
@@ -134,8 +134,8 @@ if (Input::exits()) {
 
 										$invol = new Usuario();
 										# involucramos al usuario quien crea el ticket;;
-										# 
-										# 
+										#
+										#
 										$dataInvol[$user->data()->id] = $user->data()->email;
 
 										foreach ($emailInvol as $email) {

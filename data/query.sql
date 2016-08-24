@@ -119,3 +119,26 @@ select t_u.id_ticket AS id_ticket,
             t_u.id_ticket = 72  # id del ticket
        AND
             u.id = 32           # id del usuario
+
+
+# retorna las respuesta de un ticket con informacion del usuario quien escribio dicha respuesta
+#
+#
+
+select p.nombre AS nombre,
+       d.nombre AS departamento,
+       p.cargo  AS cargo,
+       p.ext    AS extencion,
+
+       r.msg    AS mensaje,
+       r.date_update AS fecha
+
+       FROM qtelecom.respuestas r
+
+       join qtelecom.perfiles p on r.user_id = p.user_id
+       join qtelecom.users u on p.user_id = u.id
+       join qtelecom.departamentos d on p.id_departamento = d.id
+      # join qtelecom.respuestas r on t.uuid = r.uuid
+
+       WHERE
+            r.uuid = '57ade2628f9'

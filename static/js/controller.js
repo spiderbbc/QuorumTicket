@@ -21,40 +21,40 @@
         // Posting data to php file
         $http({
           method  : 'POST',
-          url     : 'model/Respuestass.php',
-          data    : $scope.respuesta.msg, //forms user object
+        //  url     : 'model/Respuestass.php',
+        //  data    : $scope.respuesta.msg, //forms user object
           headers : {'Content-Type': 'application/x-www-form-urlencoded'}
          })
-          .success(function(data) {
-            if (data.errors) {
-              $scope.message = data.message;
-							console.log($scope.message);
-              // Showing errors.
-              // $scope.errorName = data.errors.name;
-              // $scope.errorUserName = data.errors.username;
-              // $scope.errorEmail = data.errors.email;
-            } else {
-              $scope.message = data.message;
-							console.log($scope.message);
-            }
-          });
+          // .success(function(data) {
+          //   if (data.errors) {
+          //     $scope.message = data.message;
+					// 		console.log($scope.message);
+          //     // Showing errors.
+          //     // $scope.errorName = data.errors.name;
+          //     // $scope.errorUserName = data.errors.username;
+          //     // $scope.errorEmail = data.errors.email;
+          //   } else {
+          //     $scope.message = data.message;
+					// 		console.log($scope.message);
+          //   }
+          // });
         };
 
-        $scope.enviar = function(){
-      		$http.post('model/Respuesta.php', {
-      			data: {respuesta: $scope.respuesta}
-      		}).success(function(data){
-
-            $scope.message = data.message;
-            console.log('$scope.message');
-          	// $scope.campeonato.nombre = '';
-      			// $scope.campeonato.descripcion = '';
-      			// $scope.campeonato.integrantes = [];
-      			console.log(response);
-      		}).error(function(){
-      			alert('Error al intentar crear una respuesta en el ticket.');
-      		});
-      	};
+        // $scope.enviar = function(){
+      	// 	$http.post('model/Respuesta.php', {
+      	// 		data: {respuesta: $scope.respuesta}
+      	// 	}).success(function(data){
+        //
+        //     $scope.message = data.message;
+        //     console.log('$scope.message');
+        //   	// $scope.campeonato.nombre = '';
+      	// 		// $scope.campeonato.descripcion = '';
+      	// 		// $scope.campeonato.integrantes = [];
+      	// 		console.log(response);
+      	// 	}).error(function(){
+      	// 		alert('Error al intentar crear una respuesta en el ticket.');
+      	// 	});
+      	// };
 
 
     });

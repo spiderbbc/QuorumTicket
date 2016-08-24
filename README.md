@@ -65,6 +65,8 @@
 
 - 19/08/2016(Home): se muestra informacion del ticket en view template - integracion con AngularJS v1.2.29 (static/js) - seteado el setlocale para mostrar la fechas en formato (es_VE.UTF-8)...
 
+- 24/08/2016(Office):  Respuesta.php Clase envoltorio de la tabla respuesta - se envia el post en la vista view mediante AngularJS - maquetacion de la vista view ...
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

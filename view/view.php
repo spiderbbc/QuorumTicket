@@ -39,14 +39,33 @@
           <br>
               <br>
             <div class="row">
-              <div class="well">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
+
+              <?php if ($respuestas): ?>
+                <?php foreach ($resp->data() as $key => $value): ?>
+
+                  <div class="well well-sm">
+                    <span>Nombre: <?php echo $value->nombre ?></span><br>
+                    <span>Departamento: <?php echo $value->departamento ?></span><br>
+                    <span>Cargo: <?php echo $value->cargo ?></span><br>
+                    <span>Ext: <?php echo $value->extencion ?></span><br>
+                    <span>Fecha: <?php echo $value->fecha ?></span><br>
+
+                    
+                    <p>
+                      <?php echo $value->mensaje ?>
+                    </p>
+                  </div>
+
+                <?php endforeach; ?>
+              <?php else: ?>
+                <div class="well">
+                    <p>
+                      Nadie a Comentado este Ticket ..
+                    </p>
+                </div>
+              <?php endif; ?>
+
+
             </div>
 
 
@@ -71,7 +90,7 @@
                 });
                 </script>
 
-          <input type="hidden" name="token" id="inputToken" class="form-control" value="<?php echo Token::generate() ?>">
+          <input type="hidden" name="token" id="inputToken" class="form-control" value="<?php echo $token ?>">
               <div class="form-group">
                 <div class="col-sm-12">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">

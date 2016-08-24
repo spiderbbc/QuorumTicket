@@ -1,11 +1,11 @@
 
-<?php 
+<?php
 
 
 /**
-* 
+*
 */
-class Validate 
+class Validate
 {
 	private $_db,
 			$_error,
@@ -30,7 +30,7 @@ class Validate
 			# code...
 			foreach ($rules as $rule => $rule_value) {
 				# code...
-				
+
 				$source = $request[$field];
 				/*echo "El campo:{$field} con regla:{$rule} tiene un valor:{$rule_value}<br>";
 				echo "El formulario envia ... {$source}<br>";*/
@@ -56,10 +56,10 @@ class Validate
 								$this->addError("El campo:{$field} debe ser menor que {$rule_value}");
 							}
 							break;
-						
+
 						case 'equal':
 							# que sea identico con el referido ...
-							
+
 							if ($source != $request[$rule_value]) {
 								# code...
 								$this->addError("El campo:{$field} debe ser igual que {$rule_value}");
@@ -95,10 +95,10 @@ class Validate
 									$this->addError("las siguientes direcciones email no son validas {$arrayEmail[0]}");
 								}
 							}
-							
+
 
 							break;
-						
+
 						default:
 							# code...
 							break;
@@ -133,5 +133,5 @@ class Validate
 		return $this->_passed;
 	}
 
-	
+
 }
