@@ -69,6 +69,8 @@
 
 - 28/08/2016(Home): se envia el email a los involucrados cuando se genera una respuesta a un ticket, como tambien se le puede agregar nuevos involucrados al momento de generar una respuesta - se procede a realizar pruebas de envio de email.
 
+- 29/08/2016(Office): finalzadas pruebas de Email para la vistas view, maqueteado de la vista perfil - nuevo backup de la bd
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
