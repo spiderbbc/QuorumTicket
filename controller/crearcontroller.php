@@ -106,7 +106,7 @@ if (Input::exits()) {
 						'date_update'		=> date("Y-m-d H:i:s"),
 
 						'id_status'				=> 1,
-						'private'			  	=> 1
+						'private'			  	=> 0
 
 
 
@@ -144,6 +144,9 @@ if (Input::exits()) {
 												# si existe en la bd ..
 												$dataInvol[$invol->data()->id]   = $email;
 												$dataUser[$invol->data()->email]  = $invol->data()->username;
+											}elseif (!$invol->find($email)) {
+												# code...
+												echo "Problema con el Siguiente email: ".$email;
 											}
 										}
 
@@ -231,8 +234,8 @@ if (Input::exits()) {
 										$message->setTo($dataUser);
 
 										$message->setCc($from);
-										#print_r($manager); #Array ( [Raul Piedra] => eduucss@gmail.com )
-										if (isset($manager)) {
+									#	print_r($manager); #Array ( [Raul Piedra] => eduucss@gmail.com )
+									if (isset($manager)) {
 											# si tenemos datos del supervisor ...
 											$message->setBcc($manager);
 										}

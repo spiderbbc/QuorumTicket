@@ -50,7 +50,7 @@
                     <span>Ext: <?php echo $value->extencion ?></span><br>
                     <span>Fecha: <?php echo $value->fecha ?></span><br>
 
-                    
+
                     <p>
                       <?php echo $value->mensaje ?>
                     </p>
@@ -73,6 +73,11 @@
 
           <div class="row" ng-show="FormVisibility">
             <form action="" method="POST" class="form-horizontal" role="form" ng-submit="submitForm()">
+
+              <label for="email">Email:</label>
+              <input class="form-control" type="text" placeholder="emails" id="email" name="email" value="<?php echo Input::get('email') ?>">
+
+
 
             <label for="msg">Texto</label>
                 <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard">

@@ -142,3 +142,16 @@ select p.nombre AS nombre,
 
        WHERE
             r.uuid = '57ade2628f9'
+
+# retorna los involucrados de un ticket mediante la tabla ticket_users
+select u.email AS email,
+       p.nombre AS nombre
+
+       FROM qtelecom.ticket_users t_u
+
+       join qtelecom.perfiles p on t_u.id_user = p.user_id
+       join qtelecom.users u on p.user_id = u.id
+
+       WHERE
+
+        t_u.id_ticket = 65

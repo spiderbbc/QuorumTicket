@@ -84,7 +84,10 @@ Email::getInstance();
 // $from = array($user->data()->email => $user->data()->username);
 // print_r($from)."<br>";
 
-$ticket = new Ticket();
+//$ticket = new Ticket();
 
-$data   = $ticket->find('id','7233');
-print_r($data) ;
+//$data   = $ticket->find('id','7233');
+//print_r($data) ;
+
+$db = DB::getInstance()->query("SELECT * FROM tickets");
+print_r($db);

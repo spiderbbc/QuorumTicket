@@ -191,6 +191,41 @@ class Usuario
 		return false;
 	}
 
+
+	public function involInfoByid_ticket($id_ticket)
+	{
+		# retorna el nombre y el email de los involucrados en un ticket
+		# teniendo informacion del usuario en la tabla perfil ...
+		if ($id_ticket) {
+			# code...
+			$infoInvol = $this->_db->query('
+
+			select u.email AS email,
+					 p.nombre AS nombre
+
+					 FROM qtelecom.ticket_users t_u
+
+					 join qtelecom.perfiles p on t_u.id_user = p.user_id
+					 join qtelecom.users u on p.user_id = u.id
+
+					 WHERE
+					 t_u.id_ticket = ?
+
+			',array($id_ticket));
+
+			if ($infoInvol->count()) {
+				# si tenemos datos  ..
+				$this->_data = $infoInvol->result();
+				return true;
+			}
+
+
+		}
+		return false;
+	}
+
+
+
 	public function logout()
 	{
 		# elimina una session..

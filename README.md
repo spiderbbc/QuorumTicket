@@ -67,6 +67,8 @@
 
 - 24/08/2016(Office):  Respuesta.php Clase envoltorio de la tabla respuesta - se envia el post en la vista view mediante AngularJS - maquetacion de la vista view ...
 
+- 28/08/2016(Home): se envia el email a los involucrados cuando se genera una respuesta a un ticket, como tambien se le puede agregar nuevos involucrados al momento de generar una respuesta - se procede a realizar pruebas de envio de email.
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
