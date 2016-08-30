@@ -28,30 +28,36 @@
     <!-- <h4 class="card-title"><label for="username">Username:</label></h4> -->
 
 
+    <form class="" action="index.html" method="post">
+
       <label for="username" class="col-sm control-label">Username:</label>
-      <div class="well well-sm">
-        <?php echo $user->data()->username ?>
-      </div>
+      <input type="text" name="username" value="" placeholder="<?php echo $user->data()->username ?>">
       <label for="contraseña" class="col-sm control-label">Contraseña Actual:</label>
-      <div class="well well-sm">
-        ************
-      </div>
+      <input type="password" name="contraseña" value="">
+      <label for="contraseña" class="col-sm control-label">Nueva Contraseña:</label>
+      <input type="password" name="contraseña" value="">
+      <label for="contraseña" class="col-sm control-label">Confirmar Contraseña:</label>
+      <input type="password" name="contraseña" value="">
 
       <label for="departamento" class="col-sm control-label">Departamento:</label>
-      <div class="well well-sm">
-        <?php echo $perfil->data()[0]->departamento;?>
-      </div>
-      <label for="cargo" class="col-sm control-label">Cargo:</label>
-      <div class="well well-sm">
-        <?php echo $perfil->data()[0]->cargo;?>
-      </div>
-      <label for="extencion" class="col-sm control-label">Extencion:</label>
-      <div class="well well-sm">
-        <?php echo $perfil->data()[0]->extencion;?>
-      </div>
-      <br>
-      <a href="?accion=perfilupdate" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> 
+      <select  class="form-control" name="impacto">
+        <!-- departamentos -->
 
+       <?php foreach ($datos['departamentos'] as $key => $value): ?>
+
+         <option value="<?php echo $value->id ?>"><?php echo $value->nombre ?></option>
+
+       <?php endforeach ?>
+     </select>
+      <label for="cargo" class="col-sm control-label">Cargo:</label>
+      <input type="text" name="cargo" value="" placeholder="<?php echo $perfil->data()[0]->cargo;?>">
+      <label for="extencion" class="col-sm control-label">Extencion:</label>
+      <input type="text" name="name" value="" placeholder="<?php echo $perfil->data()[0]->extencion;?>">
+      <br>
+      <button type="submit" class="btn btn-primary" name="button"><span class="glyphicon glyphicon-pencil"></span></button>
+
+
+    </form>
 
 
     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
