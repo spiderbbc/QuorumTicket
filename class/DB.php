@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
 * name: DB
@@ -6,7 +6,7 @@
 * autor: Eduardo Morales
 * Description: Clase envoltorio para la base de datos: create,update,query
 */
-class DB 
+class DB
 {
 	private static $_instance = null;
 
@@ -23,8 +23,8 @@ class DB
 		# code...
 		try {
 			$this->_pdo = new PDO('mysql:host='.Config::get('mysql/host').';dbname='.Config::get('mysql/db').'',Config::get('mysql/username'),Config::get('mysql/password'));
-			
-			
+
+
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
@@ -46,6 +46,7 @@ class DB
 	{
 		$this->_error = false;
 		# ejecuta una sentencia query...
+		
 		if ($this->_query = $this->_pdo->prepare($sql)) {
 			# si es una sentencia valida..
 			if (count($params)) {
@@ -68,7 +69,7 @@ class DB
 
 					$this->_error = true;
 				}
-			
+
 		}
 
 		return $this;
@@ -79,7 +80,7 @@ class DB
 		# determina una accion para invocar el metodo query..
 		if (count($where) === 3) {
 			# si el array tiene 3 elementos..
-			
+
 			$operators = array('<','>','=','>=','<=');
 
 			$field    = $where[0];
@@ -89,7 +90,7 @@ class DB
 			if (in_array($operador,$operators)) {
 				# si valor esta en el array en operators..
 				$sql = "{$action} FROM {$table} WHERE {$field}{$operador} ?";
-				
+
 				if (!$this->query($sql,array($value))->error()) {
 					# si no hay error en el query...
 					return $this;
@@ -104,7 +105,7 @@ class DB
 	public function insert($table,$fields = array())
 	{
 		# metodo que crea un nuevo registro en la bd ...
-		
+
 
 		if (count($fields)) {
 			# si hay datos en el array...
@@ -116,16 +117,16 @@ class DB
 				if (count($fields) > $x) {
 					# si el indice es menor a fields ...
 					$set .= ', ';
-					
+
 				}
 				$x++;
 			}
 			/*die($set);*/
 			$keys = array_keys($fields);
 				#   "INSERT INTO {$table}(`".implode('`,`',$keys)."`) VALUES({$value})"
-			$sql  = "INSERT INTO {$table}(`".implode('`,`',$keys)."`) VALUES ({$set})"; 
+			$sql  = "INSERT INTO {$table}(`".implode('`,`',$keys)."`) VALUES ({$set})";
 			/*die($sql);*/
-			
+
 			if (!$this->query($sql,$fields)->error()) {
 				# si no hay error...
 				return true;
@@ -149,7 +150,7 @@ class DB
 				if (count($fields) > $x) {
 				 	# code...
 				 	$set .= ', ';
-				 } 
+				 }
 				 $x++;
 			}
 			/*die($set);*/

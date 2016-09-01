@@ -53,6 +53,37 @@ class Usuario
 
 	}
 
+	public function update($id_user,$fields = array())
+	{
+		# actualiza un usuario en la vista de perfilUpdate ...
+
+$query = $this->_db->query("
+
+		UPDATE users,perfiles
+		SET
+
+		    users.password = ?,
+				users.salt     = ?,
+				perfiles.nombre = ?,
+		    perfiles.id_departamento= ?,
+		    perfiles.cargo = ?,
+		    perfiles.ext= ?
+
+		WHERE users.id= {$id_user} AND perfiles.user_id= {$id_user}
+		",$fields);
+
+
+
+if ($query->error()) {
+			# si no hay cuenta ...
+			throw new Exception("Error Processing Update", 1);
+
+		}
+		return true;
+
+
+	}
+
 
 	public function find($user = null)
 	{

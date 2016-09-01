@@ -162,6 +162,7 @@ SET
     users.username ="thais2",
     users.password = "121154545454",
     perfiles.id_departamento="1",
-    perfiles.cargo = "Some test", perfiles.ext="1111"
+    perfiles.cargo = "Some test",
+    perfiles.ext="1111"
 
 WHERE users.id=53 AND perfiles.user_id=53;

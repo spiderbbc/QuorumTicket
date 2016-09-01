@@ -31,18 +31,18 @@
 						<div class="form-group">
 							<legend>Formulario de Registro</legend>
 						</div>
-				
+
 						<?php # echo Input::get('token') ?>
 						<?php if (!empty($errores)): ?>
-						<?php $set = '';  ?>	
+						<?php $set = '';  ?>
 						<?php foreach ($errores as $error): ?>
-							
+
 
 						<?php $set .= "<li>{$error}</li> " ?>
-							
+
 			<!-- <div class="alert alert-info" role="alert"><?php echo $error ?></div> -->
-							
-						
+
+
 
 						<?php endforeach ?>
 
@@ -56,16 +56,16 @@
 						});
 
 						</script>
-						
+
 						<?php endif ?>
-				
+
 						<div class="form-group">
 							<div class="form-group">
 								<label for="username" class="col-sm-4 control-label">Username:</label>
 								<div class="col-sm-12">
 									<input type="text" name="username" id="username" class="form-control" value="<?php echo Input::get('username') ?>" title="" autocomplete="off">
-									
-									
+
+
 
 									<label for="email" class="control-label">Email:</label>
 									<input type="email" name="email" id="email" class="form-control" value="" title="">
@@ -81,7 +81,7 @@
 
 								</div>
 
-								
+
 
 							</div>
 							<div class="col-sm-10 col-sm-offset-2">
@@ -93,13 +93,13 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
 		</div>
 			</div>
-			
+
 
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
- 		
+
 	</body>
 </html>

@@ -32,6 +32,13 @@
       <div class="well well-sm">
         <?php echo $user->data()->username ?>
       </div>
+
+      <label for="nombre" class="col-sm control-label">Nombre:</label>
+      <div class="well well-sm">
+        <?php echo $perfil->data()[0]->nombre ?>
+      </div>
+
+
       <label for="contraseña" class="col-sm control-label">Contraseña Actual:</label>
       <div class="well well-sm">
         ************
@@ -50,7 +57,7 @@
         <?php echo $perfil->data()[0]->extencion;?>
       </div>
       <br>
-      <a href="?accion=perfilupdate" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> 
+      <a href="?accion=perfilupdate" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
 
 
 

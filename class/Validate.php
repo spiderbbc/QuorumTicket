@@ -35,7 +35,7 @@ class Validate
 				/*echo "El campo:{$field} con regla:{$rule} tiene un valor:{$rule_value}<br>";
 				echo "El formulario envia ... {$source}<br>";*/
 
-				if (empty($source) && $rule === "required") {
+				if (empty($source) && $rule === "required" && $rule_value === true) {
 					# code...
 					$this->addError("El Campo:{$field} es requerido");
 				}elseif (!empty($source)) {

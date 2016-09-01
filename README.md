@@ -71,6 +71,10 @@
 
 - 29/08/2016(Office): finalzadas pruebas de Email para la vistas view, maqueteado de la vista perfil - nuevo backup de la bd
 
+- 30/08/2016(Office): Diseño de la vista perfil y perfilUpdate, con sus respectivos controladores.
+
+- 31/08/2016(Home): Cambiado la clase Validate(required = false)- persistencia en la tablas user y perfil al actualizar un usuario. 
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
