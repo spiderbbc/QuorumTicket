@@ -5,6 +5,8 @@
   <title>Mi Perfil</title>
   <?php include_once 'templates/header.php' ?>
   <link rel="stylesheet" href="/QTelecom/static/css/card.css" media="screen" title="no title" charset="utf-8">
+  <!-- SweetAlert -->
+  <script src="/QTelecom/bower_components/sweetalert/dist/sweetalert.min.js"></script>
 <body>
   <div class="container">
    <?php include_once 'templates/nav-bar.php'; ?>
@@ -14,6 +16,16 @@
 </style>
 
  <div class="row center">
+
+   <?php if ($msg = Session::flash('succes')): ?>
+
+     <script type="text/javascript">
+
+       swal("Sweet...", "<?php echo $msg ?>!", "success");
+     </script>
+
+   <?php endif ?>
+
 
    <div class="col-sm-2"></div>
        <div class="col-sm-6 ">
@@ -82,4 +94,6 @@
 
 
   </body>
+  <!-- Sweet Alert -->
+  <link rel="stylesheet" type="text/css" href="/QTelecom/bower_components/sweetalert/dist/sweetalert.css">
 </html>

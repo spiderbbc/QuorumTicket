@@ -77,6 +77,7 @@ $query = $this->_db->query("
 if ($query->error()) {
 			# si no hay cuenta ...
 			throw new Exception("Error Processing Update", 1);
+			$this->_error
 
 		}
 		return true;

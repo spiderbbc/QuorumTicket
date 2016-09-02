@@ -137,6 +137,12 @@ if (Input::exits()) {
 
         }
 
+        if ($userUpdate === true) {
+          # si no hay errores al guardar el perfil ..
+          Session::flash('succes', 'Se guardo de manera exitosa la informacion');
+          Redirect::to('?accion=perfil');
+        }
+
 
     }else {
       # si no paso la validacion disparamos los errores..
