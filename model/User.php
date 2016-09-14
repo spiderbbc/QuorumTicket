@@ -49,6 +49,11 @@ class Usuario
 
 		}
 
+		if ($this->_db->last_insert()) {
+			# si tenemos el ultimo el id ....
+			$this->temporalPerfil($this->_db->last_insert());
+		}
+
 		return true;
 
 	}
@@ -77,7 +82,7 @@ $query = $this->_db->query("
 if ($query->error()) {
 			# si no hay cuenta ...
 			throw new Exception("Error Processing Update", 1);
-			$this->_error
+			$this->_error;
 
 		}
 		return true;
@@ -146,6 +151,15 @@ if ($query->error()) {
 		}
 	}
 
+
+	public function temporalPerfil($id)
+	{
+		# creara un perfil temporal ....
+		if ($id) {
+			# si hay un id ...
+			die($id);
+		}
+	}
 
 	public function perfilInfobyGroupDepart($depar = '',$grupo = '')
 	{
@@ -257,6 +271,10 @@ if ($query->error()) {
 	}
 
 
+	public function updatePerfil($value='')
+	{
+		# code...
+	}
 
 	public function logout()
 	{

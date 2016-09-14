@@ -46,7 +46,7 @@ class DB
 	{
 		$this->_error = false;
 		# ejecuta una sentencia query...
-		
+
 		if ($this->_query = $this->_pdo->prepare($sql)) {
 			# si es una sentencia valida..
 			if (count($params)) {

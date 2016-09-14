@@ -1,4 +1,4 @@
-<img src="icon.png" align="right" />
+<img src="php7.png" align="right" />
 # Sistema de Gestion de Tickets [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 > Version: LT
 
@@ -73,7 +73,9 @@
 
 - 30/08/2016(Office): Diseño de la vista perfil y perfilUpdate, con sus respectivos controladores.
 
-- 31/08/2016(Home): Cambiado la clase Validate(required = false)- persistencia en la tablas user y perfil al actualizar un usuario. 
+- 31/08/2016(Home): Cambiado la clase Validate(required = false)- persistencia en la tablas user y perfil al actualizar un usuario.
+
+-14/09/2016(Office): Solventado fallo en linea 89 User.model- cambio en model user metodo temporalPerfil.
 
 ## License
 

@@ -112,8 +112,14 @@ if (Input::exits()) {
               }
 
       }else {
-        $salt = $user->data()->salt;
-        $password = $user->data()->password;
+
+        if (!empty(Input::get('password'))) {
+          # en el caso de que este vacion el campo contraseña(actual) y se envie el password para ser actualizada...
+          $errors[0] = "Upps .. para cambiar la contraseña es necesario introducir la contraseña registrada en el sistema..";
+        }
+          $salt = $user->data()->salt;
+          $password = $user->data()->password;
+
       }
         if (empty($errors)) {
           # no se genero error en la contrase actual por ende procedemos a actualizar..
@@ -121,7 +127,7 @@ if (Input::exits()) {
           $update= new Usuario();
 
               try {
-                $userUpdate = $update->update($user->data()->id,array(
+                  $userUpdate = $update->update($user->data()->id,array(
                   $password,
                   $salt,
                   Input::get('nombre'),
@@ -137,11 +143,17 @@ if (Input::exits()) {
 
         }
 
-        if ($userUpdate === true) {
-          # si no hay errores al guardar el perfil ..
-          Session::flash('succes', 'Se guardo de manera exitosa la informacion');
-          Redirect::to('?accion=perfil');
-        }
+              //  si existe $userUpdate ya que pudo tener un error y no se instancia al pasar por el try
+              // o pudo fallar la actualizacion y dar falso
+              if (isset($userUpdate) && $userUpdate == true) {
+                # si no hay errores al guardar el perfil ..
+                Session::flash('succes', 'Se guardo de manera exitosa la informacion');
+                Redirect::to('?accion=perfil');
+              }else {
+                #  se envia a una pagian de error ..
+                Session::flash('error', 'Upps .. tenemos un problema y no pudimos actualizar la informacion');
+                Redirect::to('?accion=errorw');
+              }
 
 
     }else {
