@@ -35,7 +35,7 @@
            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p> -->
 
   <div class="card">
-   <img class="img-circle foto" src="/QTelecom/static/img/perfil/T.png" alt="Card image cap">
+   <img class="img-circle foto" src="/QTelecom<?php echo $perfil->data()[0]->img  ?>" alt="Card image cap">
   <div class="card-block">
     <!-- <h4 class="card-title"><label for="username">Username:</label></h4> -->
 

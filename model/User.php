@@ -157,7 +157,16 @@ if ($query->error()) {
 		# creara un perfil temporal ....
 		if ($id) {
 			# si hay un id ...
-			die($id);
+			$temporalperfil = $this->_db->insert('perfiles',array(
+				'user_id'         => $id,
+				'id_departamento' => '4',
+				'nombre'          => 'Sin Asignar',
+				'cargo' 					=> 'desconocido',
+				'ext' 						=> '0000',
+				'img' 						=> '/static/img/perfil/Q.png'
+
+			));
+			#die($id);
 		}
 	}
 
@@ -214,6 +223,7 @@ if ($query->error()) {
 			select p.nombre AS nombre,
 		       d.nombre AS departamento,
 		       p.cargo  AS cargo,
+					 p.img    AS img,
 		       p.ext    AS extencion
 
 		       FROM qtelecom.perfiles p
