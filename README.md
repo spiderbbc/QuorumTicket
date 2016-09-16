@@ -77,7 +77,9 @@
 
 - 14/09/2016(Office): Solventado fallo en linea 89 User.model- cambio en model user metodo temporalPerfil.
 
-- 14/09/2016(Home): se crea un perfil temporal al registrarse un nuevo usuario y una foto de perfil temporal para dicho usuario- backup db en data .
+- 14/09/2016(Home): se crea un perfil temporal al registrarse un nuevo usuario y una foto de perfil temporal para dicho usuario- backup db en data.
+
+- 15/09/2016(Home): persitencia de la imagen para un perfil asigando por la primeta letra del nombre del usuario.
 
 ## License
 

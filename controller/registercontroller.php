@@ -81,8 +81,11 @@ if (Input::exits()) {
 			die($e->getMessage());
 		}
 
-		Session::flash('succes','Ya se encuentra registrado en el Sistema');
-		Redirect::to('?accion=login');
+		if ($user == true) {
+			# code...
+			Session::flash('succes','Ya se encuentra registrado en el Sistema');
+			Redirect::to('?accion=login');
+		}
 
 	}else{
 

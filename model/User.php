@@ -49,12 +49,12 @@ class Usuario
 
 		}
 
-		if ($this->_db->last_insert()) {
+		if ($this->temporalPerfil($this->_db->last_insert())) {
 			# si tenemos el ultimo el id ....
-			$this->temporalPerfil($this->_db->last_insert());
+			return true;
 		}
 
-		return true;
+
 
 	}
 
@@ -72,7 +72,8 @@ $query = $this->_db->query("
 				perfiles.nombre = ?,
 		    perfiles.id_departamento= ?,
 		    perfiles.cargo = ?,
-		    perfiles.ext= ?
+		    perfiles.ext   = ?,
+				perfiles.img   = ?
 
 		WHERE users.id= {$id_user} AND perfiles.user_id= {$id_user}
 		",$fields);
@@ -163,7 +164,7 @@ if ($query->error()) {
 				'nombre'          => 'Sin Asignar',
 				'cargo' 					=> 'desconocido',
 				'ext' 						=> '0000',
-				'img' 						=> '/static/img/perfil/Q.png'
+				'img' 						=> 'Q.png'
 
 			));
 			#die($id);

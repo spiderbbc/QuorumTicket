@@ -1,4 +1,5 @@
 <?php
+
 #require_once 'class/Email.php';
 #require_once 'core/init.php';
 // require_once 'vendor/autoload.php';
@@ -89,5 +90,7 @@ Email::getInstance();
 //$data   = $ticket->find('id','7233');
 //print_r($data) ;
 
-$db = DB::getInstance()->query("SELECT * FROM tickets");
-print_r($db);
+//$db = DB::getInstance()->query("SELECT * FROM tickets");
+//print_r($db);
+//require_once 'functions/string.php';
+//print   extractAndCapitalize('stacie').'.png';

@@ -1,4 +1,6 @@
 <?php
+require_once 'functions/string.php';
+
 
 $user = new Usuario;
 #$errors = [];
@@ -133,7 +135,9 @@ if (Input::exits()) {
                   Input::get('nombre'),
                   Input::get('id_departamento'),
                   Input::get('cargo'),
-                  Input::get('extencion')
+                  Input::get('extencion'),
+                  extractAndCapitalize(Input::get('nombre')).'.png'
+
 
                 ));
 
@@ -152,7 +156,7 @@ if (Input::exits()) {
               }else {
                 #  se envia a una pagian de error ..
                 Session::flash('error', 'Upps .. tenemos un problema y no pudimos actualizar la informacion');
-                Redirect::to('?accion=errorw');
+                Redirect::to('?accion=error');
               }
 
 
