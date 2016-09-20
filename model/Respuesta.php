@@ -48,6 +48,7 @@ class Respuesta
            d.nombre AS departamento,
            p.cargo  AS cargo,
            p.ext    AS extencion,
+           p.img    AS img,
 
            r.msg    AS mensaje,
            r.date_update AS fecha

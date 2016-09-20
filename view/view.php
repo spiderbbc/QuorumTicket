@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es-VE" ng-app="postApp">
   <title>Ver Ticket</title>
+<link rel="stylesheet" href="/QTelecom/static/css/chat.css" media="screen" title="no title" charset="utf-8">
   <?php include_once 'templates/header.php' ?>
 
 <body ng-controller="postController">
@@ -43,18 +44,39 @@
               <?php if ($respuestas): ?>
                 <?php foreach ($resp->data() as $key => $value): ?>
 
-                  <div class="well well-sm">
-                    <span>Nombre: <?php echo $value->nombre ?></span><br>
-                    <span>Departamento: <?php echo $value->departamento ?></span><br>
-                    <span>Cargo: <?php echo $value->cargo ?></span><br>
-                    <span>Ext: <?php echo $value->extencion ?></span><br>
-                    <span>Fecha: <?php echo $value->fecha ?></span><br>
+                  <section>
+                    <div class="chat">
+                      <ul>
+                        <?php if ($perfil->data()[0]->nombre == $value->nombre): ?>
+                          <li class="you">
+                        <?php else: ?>
+                          <li class="other">
+                        <?php endif; ?>
+
+                              <a class="user" href="#"><img alt="" src="/QTelecom/static/img/perfil/<?php  echo $value->img; ?>" /></a>
+                              <div class="date">
+
+                                <?php echo $value->fecha ?>
+                              </div>
+                              <div class="message">
+                                <div class="hider">
+                                  <span>Click to read</span>
+                                </div>
+                                <p>
+                                  <span>Nombre: <?php echo $value->nombre ?></span><br>
+                                  <span>Departamento: <?php echo $value->departamento ?></span><br>
+                                  <span>Cargo: <?php echo $value->cargo ?></span><br>
+                                  <span>Ext: <?php echo $value->extencion ?></span><br>
+                                <?php echo $value->mensaje ?>
+                                </p>
+                              </div>
+                            </li>
+                      </ul>
+                    </div>
+                  </section>
 
 
-                    <p>
-                      <?php echo $value->mensaje ?>
-                    </p>
-                  </div>
+
 
                 <?php endforeach; ?>
               <?php else: ?>
@@ -116,10 +138,14 @@
           <div class="sidebar-module sidebar-module-inset">
             <?php #var_dump($perfil) ?>
             <div class="well">
-              <?php if ($perfilInfo): ?>
 
+              <?php if ($perfilInfo): ?>
+                <div class="row">
+                    <div class="col-md-12"><span class="pull-right"><img src="/QTelecom/static/img/perfil/<?php echo $perfil->data()[0]->img; ?>" alt="" class="img-circle"  width="40" height="40"/></span></div>
+                </div>
 
               <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
+
               <p>Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.</p>
               <p>Cargo: <em><?php echo $perfil->data()[0]->cargo;?></em>.</p>
               <p>Extencion: <em><?php echo $perfil->data()[0]->extencion; ?></em></p>
