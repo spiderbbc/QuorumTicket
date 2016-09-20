@@ -81,6 +81,8 @@
 
 - 15/09/2016(Home): persitencia de la imagen para un perfil asigando por la primeta letra del nombre del usuario.
 
+- 19/09/2016(Home): Cambio en el diseño de view.php para que muestre las fotos de perfil.
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
