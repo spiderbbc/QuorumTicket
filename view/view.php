@@ -60,7 +60,7 @@
                               </div>
                               <div class="message">
                                 <div class="hider">
-                                  <span>Click to read</span>
+                                  <span>Click para ver..</span><!-- futura version -->
                                 </div>
                                 <p>
                                   <span>Nombre: <?php echo $value->nombre ?></span><br>
@@ -135,7 +135,7 @@
         </div><!-- /.blog-main -->
 
        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
+          <div class="sidebar-module sidebar-module-inset" style="position: fixed">
             <?php #var_dump($perfil) ?>
             <div class="well">
 
@@ -155,6 +155,19 @@
                     No hay datos del perfil
                   </p>
               <?php endif; ?>
+
+              <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+              <?php if ($requestVal[0]->id_status == 1): ?>
+                  <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-danger" name="button" href="someplace.php">Cerrar</a>
+              <?php else: ?>
+                    <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-info" name="button">Abrir</a>
+              <?php endif; ?>
+                </div>
+              </div>
+
+
+
             </div>
           </div>
 

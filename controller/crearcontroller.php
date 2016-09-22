@@ -222,9 +222,9 @@ if (Input::exits()) {
 										$message = new Swift_Message($subject);
 
 
-										$from = array($user->data()->email => $user->data()->username);
+									//	$from = array($user->data()->email => $user->data()->username);
 
-
+									$from = array(Config::get('sendpulse/login_username') => Config::get('sendpulse/system_name'));
 
 
 										$message->setFrom($from);

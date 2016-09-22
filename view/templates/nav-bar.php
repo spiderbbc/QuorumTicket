@@ -14,7 +14,7 @@
 	            <ul class="nav navbar-nav">
 	              <li class="active"><a href="?accion=home">Home</a></li>
 	              <li><a href="?accion=crear">Crear Ticket</a></li>
-	              <li><a href="#">Bandeja Entrada</a></li>
+	              <li><a href="?accion=tickets">Mis Tickets</a></li>
 	              <li class="dropdown">
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $user->data()->username; ?><span class="caret"></span></a>
 	                <ul class="dropdown-menu">

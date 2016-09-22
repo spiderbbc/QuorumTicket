@@ -15,10 +15,11 @@ setlocale(LC_TIME,"es_VE.UTF-8");
 
 			'sendpulse' => array(
 
-				'smtp_server'  => 'smtp-pulse.com',
-				'smtp_port'    => '2525',
-				'login_username' => 'ecastro@quorumtelecom.info',
+				'smtp_server'  				 => 'smtp-pulse.com',
+				'smtp_port'    				 => '2525',
+				'login_username' 			 => 'ecastro@quorumtelecom.info',
 				'login_password'       => '4Ng4YG92iEk6MK',
+				'system_name'					 => 'Quorum Ticket'
 
 				),
 

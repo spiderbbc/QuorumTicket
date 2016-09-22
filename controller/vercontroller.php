@@ -93,7 +93,7 @@ if (Input::exits()) {
 						'date_update'		=> date("Y-m-d H:i:s")
 
 
-			));	
+			));
 
 
 					if ($model->error()) {
@@ -167,6 +167,7 @@ if (Input::exits()) {
 					 Config::get('sendpulse/smtp_port'));
 					$transport->setUsername(Config::get('sendpulse/login_username'));
 					$transport->setPassword(Config::get('sendpulse/login_password'));
+					$transport->setLocalDomain('[tecnicos2]');
 					$swift = Swift_Mailer::newInstance($transport);
 
 					$subject = "QTelecom se a respondido el ticket: ".$requestVal[0]->id;
@@ -183,8 +184,8 @@ if (Input::exits()) {
 					$message = new Swift_Message($subject);
 
 
-					$from = array($user->data()->email => $user->data()->username);
-
+			//		$from = array($user->data()->email => $user->data()->username);
+					$from = array(Config::get('sendpulse/login_username') => Config::get('sendpulse/system_name'));
 					$message->setFrom($from);
 
 					$message->setBody($html, 'text/html');
@@ -207,7 +208,10 @@ if (Input::exits()) {
 				#	print_r($dataInvol);
 
 
-					$message->setTo($dataInvol);
+					if (isset($dataInvol)) {
+						# code...
+						$message->setTo($dataInvol);
+					}
 
 					$message->addPart($text, 'text/plain');
 

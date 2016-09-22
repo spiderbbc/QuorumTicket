@@ -83,6 +83,8 @@
 
 - 19/09/2016(Home): Cambio en el diseño de view.php para que muestre las fotos de perfil.
 
+- 22/09/2016(Office): persistencia en el cambio de status de un ticket - Ticketscontroller para representar los ticket creados por el usuario logeado - cambio en el estilo por fixed en view.php
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

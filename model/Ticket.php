@@ -26,9 +26,18 @@ class Ticket
 	}
 
 
-	public function update($uuid,$fields = array())
+	public function update($id,$fields = array())
 	{
 		# actualiza un ticket y devuelve true o false..
+		$this->_error = false;
+		if (count($fields)) {
+			# si hay datos que  actualizar ...
+			if (!$this->_db->update('tickets',$id,$fields)) {
+				# code...
+				throw new Exception("Error Processing Request", 1);
+				$this->_error = true;
+			}
+		}
 	}
 
 
