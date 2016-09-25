@@ -28,7 +28,7 @@
 
 		</style>
 
-		
+
 			<div class="container">
 			    <div class="row">
 			        <div class="col-md-12">
@@ -44,7 +44,7 @@
 			                </div>
 			                <div class="error-actions">
 			                    <a href="?accion=home" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-			                        Take Me Home </a>
+			                        Regresar al Inicio </a>
 			                </div>
 			            </div>
 			        </div>
@@ -52,7 +52,7 @@
 			</div>
 
 
-		
+
 	</body>
 
 	<!-- jQuery -->
@@ -60,5 +60,5 @@
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		
+
 </html>

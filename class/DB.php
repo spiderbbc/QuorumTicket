@@ -23,8 +23,8 @@ class DB
 		# code...
 		try {
 			$this->_pdo = new PDO('mysql:host='.Config::get('mysql/host').';dbname='.Config::get('mysql/db').'',Config::get('mysql/username'),Config::get('mysql/password'));
-
-
+			// version postgresql
+			#$this->_pdo = new PDO('pgsql:host='.Config::get('postgresql/host').';port='.Config::get('postgresql/port').';dbname='.Config::get('postgresql/db').'',Config::get('postgresql/username'),Config::get('postgresql/password'));
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
