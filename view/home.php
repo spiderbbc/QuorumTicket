@@ -60,6 +60,7 @@
 
       <tr>
         <th>Numero Ticket</th>
+        <th>Privado</th>
         <th>Asunto</th>
         <th>Status</th>
         <th>Autor</th>
@@ -76,6 +77,17 @@
         <td><?php echo $value->numero ?>
         <a class="btn btn-default btn-xs" href="/QTelecom/?accion=ver&valor=<?php echo $value->uuid ?>" role="button">Ingresar</a>
         </td>
+        <?php if ($value->privado == 1): ?>
+          <td>
+            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+          </td>
+        <?php else: ?>
+          <td>
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+          </td>
+        <?php endif; ?>
+
+
         <td><?php echo $value->titulo ?></td>
         <td><?php echo $value->estatus ?></td>
         <td><?php echo $value->autor ?></td>

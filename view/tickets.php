@@ -16,7 +16,7 @@
             "lengthMenu": "Mostrar _MENU_ Tickets por pagina",
             "sSearch":         "Buscar:",
             "zeroRecords": "Upps .. no hay resultados - lo sentimos :(",
-            "info": "Mostrando pagina _PAGE_ of _PAGES_",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_",
             "infoEmpty": "No hay Tickets Disponibles",
             "infoFiltered": "(filtrado para _MAX_ resultados en total )"
         }
@@ -50,62 +50,74 @@
 	        </p>
 	        </div> -->
 
-        <?php if (!$ticket->listar()->error()): ?>
+          <?php if (!$ticket->listarByuserid($user->data()->id)->error()): ?>
 
-          <!-- recorremos ticket -->
-          <table id="example" class="display" cellspacing="0" width="100%"><thead>
-
-
+            <!-- recorremos ticket -->
+            <table id="example" class="display" cellspacing="0" width="100%"><thead>
 
 
-      <tr>
-        <th>Numero Ticket</th>
-        <th>Asunto</th>
-        <th>Status</th>
-        <th>Autor</th>
-        <th>Servicio</th>
-        <th>Creado</th>
-        <th>Actualizado</th>
-      </tr>
-    </thead>
-    <tbody>
 
-        <?php foreach ($ticket->listar()->data() as $key => $value): ?>
+
         <tr>
-
-        <td><?php echo $value->numero ?>
-        <a class="btn btn-default btn-xs" href="/QTelecom/?accion=ver&valor=<?php echo $value->uuid ?>" role="button">Ingresar</a>
-        </td>
-        <td><?php echo $value->titulo ?></td>
-        <td><?php echo $value->estatus ?></td>
-        <td><?php echo $value->autor ?></td>
-        <td><?php echo $value->servicios ?></td>
-        <td><?php echo $value->creado ?></td>
-        <td><?php echo $value->actualizado ?></td>
+          <th>Numero Ticket</th>
+          <th>Privado</th>
+          <th>Asunto</th>
+          <th>Status</th>
+          <th>Autor</th>
+          <th>Servicio</th>
+          <th>Creado</th>
+          <th>Actualizado</th>
         </tr>
-        <?php endforeach ?>
+      </thead>
+      <tbody>
+
+          <?php foreach ($ticket->data() as $key => $value): ?>
+          <tr>
+
+          <td><?php echo $value->numero ?>
+          <a class="btn btn-default btn-xs" href="/QTelecom/?accion=ver&valor=<?php echo $value->uuid ?>" role="button">Ingresar</a>
+          </td>
+          <?php if ($value->privado == 1): ?>
+            <td>
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </td>
+          <?php else: ?>
+            <td>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            </td>
+          <?php endif; ?>
 
 
-  </table>
+          <td><?php echo $value->titulo ?></td>
+          <td><?php echo $value->estatus ?></td>
+          <td><?php echo $value->autor ?></td>
+          <td><?php echo $value->servicios ?></td>
+          <td><?php echo $value->creado ?></td>
+          <td><?php echo $value->actualizado ?></td>
+          </tr>
+          <?php endforeach ?>
 
 
-        <?php else: ?>
-          <div class="well">
-            <p class="text text-central">No hay Tickets en estos momentos</p>
-          </div>
-        <?php endif ?>
+    </table>
+
+
+          <?php else: ?>
+            <div class="well">
+              <p class="text text-central">No hay Tickets en estos momentos</p>
+            </div>
+          <?php endif ?>
 
 
 
 
 
-	    </div> <!-- /container -->
+        </div> <!-- /container -->
 
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$('#example').DataTable();
-			} );
-		</script>
+      <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+          $('#example').DataTable();
+        } );
+      </script>
 
 
  		</body>

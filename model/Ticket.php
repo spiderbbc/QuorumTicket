@@ -83,20 +83,21 @@ class Ticket
 		$tickets = $this->_db->query('
 
 		SELECT t.id AS numero,
-		      t.uuid AS uuid,
-		      t.titulo,
-		      s.nombre AS estatus,
-		      u.username AS autor,
-		      serv.nombre AS servicios,
-		      t.date_added AS creado,
-		      t.date_update AS actualizado
-		      from qtelecom.tickets t
+		       t.uuid AS uuid,
+					 t.private AS privado,
+		       t.titulo,
+		       s.nombre AS estatus,
+		       u.username AS autor,
+		       serv.nombre AS servicios,
+		       t.date_added AS creado,
+		       t.date_update AS actualizado
+		       from qtelecom.tickets t
 
 		      join qtelecom.users u on t.user_id = u.id
 		      join qtelecom.servicios serv on t.id_servicios = serv.id
 		      join qtelecom.status s on t.id_status = s.id
 
-		      WHERE t.private = 0 '
+		      #WHERE t.private = 0 '
       );
 
 		if ($tickets->count()) {
@@ -112,7 +113,42 @@ class Ticket
 
 	}
 
+	public function listarByuserid($userid)
+	{
+		# lista los tiquets para el home sin restricion..
+		$this->_error = false;
+		$tickets = $this->_db->query('
 
+		SELECT t.id AS numero,
+      t.uuid AS uuid,
+			t.private AS privado,
+      t.titulo,
+      s.nombre AS estatus,
+      u.username AS autor,
+      serv.nombre AS servicios,
+      t.date_added AS creado,
+      t.date_update AS actualizado
+      from qtelecom.tickets t
+
+      join qtelecom.users u on t.user_id = u.id
+      join qtelecom.servicios serv on t.id_servicios = serv.id
+      join qtelecom.status s on t.id_status = s.id
+
+      WHERE t.user_id = ? ',array($userid)
+      );
+
+		if ($tickets->count()) {
+			# code...
+			$this->_data = $tickets->result();
+			$this->_error = false;
+
+		}else {
+			$this->_error = true;
+		}
+
+		return $this;
+
+	}
 
 	public function make()
 	{

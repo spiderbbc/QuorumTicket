@@ -66,7 +66,7 @@ if (Input::exits()) {
 			'msg' => array(
 				'required'=> true,
 				'min'     => 5,
-				'max'     => 150,
+			//	'max'     => 150,
 
 			),
 

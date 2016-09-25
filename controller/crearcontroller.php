@@ -34,6 +34,13 @@ $arrayParams = array( 1 =>'servicios',2 =>'gravedad',3 =>'afectado');
 		}
 	}
 
+# email de los usuarios registrados
+#
+$email_user_form = $user->get_email_and_name_all();
+#print_r($email_user_form);
+
+
+
 # enviando un post
 #
 #var_dump(Token::check(Input::get('token')));
@@ -41,6 +48,7 @@ if (Input::exits()) {
 		# si hay un post ...
 			if (Token::check(Input::get('token'))) {
 				# code...
+				#die(var_dump(Input::get('email')));
 				$validate  = new Validate();
 				$validator = $validate->check($_POST,array(
 
@@ -63,12 +71,12 @@ if (Input::exits()) {
 							'required' => true,
 						),
 
-						'email' => array(
-							'required' => true,
-							'min'      => 5,
-							'filter'   => 'FILTER_VALIDATE_EMAIL',
+					//	'email' => array(
+					//		'required' => true,
+						//	'min'      => 5,
+					//		'filter'   => 'FILTER_VALIDATE_EMAIL',
 
-						),
+					//	),
 
 						'msg' => array(
 							'required' => true,
@@ -124,7 +132,8 @@ if (Input::exits()) {
 										# si no hay error...
 										# tomar los involucrados por el email pedir sus datos clave tanto para el envio del email como para la tabla pivote
 
-										$emailInvol = explodeBy(';',Input::get('email'));
+
+										#$emailInvol = explodeBy(';',Input::get('email'));
 
 										# dataInvol = [id_user => correo del usuario] si existe
 										$dataInvol= array();
@@ -138,7 +147,7 @@ if (Input::exits()) {
 										#
 										$dataInvol[$user->data()->id] = $user->data()->email;
 
-										foreach ($emailInvol as $email) {
+										foreach (Input::get('email') as $email) {
 											# por cada email separado por el limitador ..
 											if ($invol->find($email)) {
 												# si existe en la bd ..

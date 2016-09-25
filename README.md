@@ -85,6 +85,8 @@
 
 - 22/09/2016(Office): persistencia en el cambio de status de un ticket - Ticketscontroller para representar los ticket creados por el usuario logeado - cambio en el estilo por fixed en view.php
 
+- 23/09/2016(Home): finalizada la vista "Mis tickets" - incluida la libreria chosen.js para mostrar los nombres con email al momento de crear un ticket - nuevos querys en el archivo data/query.sql
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

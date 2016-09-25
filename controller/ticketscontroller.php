@@ -10,8 +10,8 @@ if (!$user->isLoggedIn()) {
 $ticket     = new Ticket();
 
 
-$requestVal = $ticket->find('user_id',$user->data()->id);
 
-var_dump($requestVal);
+
+#var_dump($requestVal);
 require_once 'view/tickets.php';
  ?>

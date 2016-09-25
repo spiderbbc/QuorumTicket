@@ -53,10 +53,40 @@ join qtelecom.gravedad g on t.id_gravedad = g.id # gravedad
 join qtelecom.afectado a on t.id_afectado = a.id
 
 
+# muestra a los nombres y email de los usuarios registrados en el sistemas
+select p.nombre AS nombre,
+		   u.email AS email
+
+		       FROM qtelecom.perfiles p
+
+		       join qtelecom.users u on p.user_id = u.id
+		       join qtelecom.departamentos d on p.id_departamento = d.id
+
+# query database vista tickets.php
+# muestra los tickets realizados por un usuario(Mis tickets)
+SELECT t.id AS numero,
+  t.uuid AS uuid,
+  t.private AS privado,
+  t.titulo,
+  s.nombre AS estatus,
+  u.username AS autor,
+  serv.nombre AS servicios,
+  t.date_added AS creado,
+  t.date_update AS actualizado
+  from qtelecom.tickets t
+
+  join qtelecom.users u on t.user_id = u.id
+  join qtelecom.servicios serv on t.id_servicios = serv.id
+  join qtelecom.status s on t.id_status = s.id
+
+  WHERE t.user_id = ?
+
+
 # query para datable
 # para mostrar todos los tickets con estatus publico
 SELECT t.id AS numero,
       t.uuid AS uuid,
+      t.private AS privado,
       t.titulo,
       s.nombre AS estatus,
       u.username AS autor,

@@ -12,11 +12,11 @@
 	          </div>
 	          <div id="navbar" class="navbar-collapse collapse">
 	            <ul class="nav navbar-nav">
-	              <li class="active"><a href="?accion=home">Home</a></li>
-	              <li><a href="?accion=crear">Crear Ticket</a></li>
-	              <li><a href="?accion=tickets">Mis Tickets</a></li>
+	              <li class="active"><a href="?accion=home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+	              <li><a href="?accion=crear"><span class="glyphicon glyphicon-edit"></span> Crear Ticket</a></li>
+	              <li><a href="?accion=tickets"><span class="glyphicon glyphicon-folder-open"></span>  Mis Tickets</a></li>
 	              <li class="dropdown">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $user->data()->username; ?><span class="caret"></span></a>
+	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> <?php echo $user->data()->username; ?></a>
 	                <ul class="dropdown-menu">
 	                  <!-- <li><a href="#">Action</a></li>
 	                  <li><a href="#">Another action</a></li> -->

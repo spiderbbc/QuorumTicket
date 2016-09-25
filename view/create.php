@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="es-VE">
   <title>Crear Ticket</title>
+  	<link rel="stylesheet" type="text/css" href="/QTelecom/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/QTelecom/static/css/prism.css">
+    <link rel="stylesheet" type="text/css" href="/QTelecom/static/css/chosen.css">
   <?php include_once 'templates/header.php' ?>
 
 <body>
@@ -87,8 +90,29 @@
                     </select>
                 <br>
 
-                <label for="email">Email:</label>
+                <label for="email">Email:</label><br>
+                <!--
                 <input class="form-control" type="text" placeholder="emails" id="email" name="email" value="<?php echo Input::get('email') ?>">
+              -->
+
+                <select data-placeholder="Usuarios a involucrar en el ticket" style="width:600px;" id="email" name="email[]" class="chosen-select" multiple="multiple" required>
+                  <option value=""></option>
+                  <optgroup label="Quorum Ticket Usuarios registrados:">
+
+                    <?php for ($i = 0; $i < count($email_user_form); $i++): ?>
+                      <option value="<?php echo $email_user_form[$i]->email ?>"><?php echo $email_user_form[$i]->nombre ?></option>
+                    <?php endfor; ?>
+
+                <!--    <option value="spiderbbc@gmail.com">Eduardo Morales</option>
+                    <option value="Jhonathan@gmail.com">Jhonathan Herrera</option>
+                    <option value="Thais@gmail.com">Thais Ravelo</option>
+                    <option value="Yanethis@gmail.com">Yanethis Quintana</option> -->
+                  </optgroup>
+
+                </select>
+
+
+
 
                 <label for="msg">Texto</label>
                 <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard" >
@@ -113,7 +137,7 @@
                 <div class="form-group">
                   <div class="col-sm-12">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
-                    Crear Ticket</button>
+                    <span class="glyphicon glyphicon-send"></span> Enviar Ticket</button>
                   </div>
                 </div>
             </form>
@@ -132,7 +156,7 @@
             <?php #var_dump($perfil) ?>
             <div class="well">
               <?php if ($perfilInfo): ?>
-              
+
 
               <h4>Autor: <?php echo $perfil->data()[0]->nombre;  ?></h4>
               <p>Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.</p>
@@ -158,6 +182,23 @@
   </div>
   <!-- /.container-fluid -->
 
+
+<!-- Chosen: para el cuadro email -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script src="/QTelecom/static/js/chosen.jquery.js" type="text/javascript"></script>
+<script src="/QTelecom/static/js/prism.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  var config = {
+    '.chosen-select'           : {},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+    '.chosen-select-width'     : {width:"95%"}
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
+</script>
 
 </body>
 <?php include_once 'templates/footer.php' ?>

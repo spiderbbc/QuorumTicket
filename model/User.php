@@ -281,6 +281,28 @@ if ($query->error()) {
 		return false;
 	}
 
+	public function get_email_and_name_all()
+	{
+		# metodo que retorna todos los email y nombres de los usuarios registrados..
+		$email_nombre = $this->_db->query('
+
+		select p.nombre AS nombre,
+	 				 u.email AS email
+
+	  FROM qtelecom.perfiles p
+
+			 join qtelecom.users u on p.user_id = u.id
+			 join qtelecom.departamentos d on p.id_departamento = d.id
+
+
+		');
+
+		if ($email_nombre->count()) {
+			# si hay resultados ...
+			return $email_nombre->result();
+		}
+		return false;
+	}
 
 	public function updatePerfil($value='')
 	{
