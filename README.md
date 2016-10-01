@@ -87,6 +87,8 @@
 
 - 23/09/2016(Home): finalizada la vista "Mis tickets" - incluida la libreria chosen.js para mostrar los nombres con email al momento de crear un ticket - nuevos querys en el archivo data/query.sql
 
+- 01/10/2016(Office): Cambio de cuenta para el envio masivos de email - cambios en la vista view.php cuando un usuario no esta autorizado para ver un ticket - estruturando nuevo validor(update)
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

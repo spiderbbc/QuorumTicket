@@ -23,8 +23,8 @@
 	                  <li><a href="?accion=perfil">Mi Perfil</a></li>
 	                  <li role="separator" class="divider"></li>
 	                  <li class="dropdown-header">Accion</li>
-	                  <li><a href="#">Entrar Como Administrador</a></li>
-	                  <li><a href="?accion=logout">Salir</a></li>
+	                  <li><a href="q-admin/">Entrar Como Administrador</a></li>
+	                  <li><a href="q-logout/">Salir</a></li>
 	                </ul>
 	              </li>
 	            </ul>

@@ -114,7 +114,7 @@ if (Input::exits()) {
 						'date_update'		=> date("Y-m-d H:i:s"),
 
 						'id_status'				=> 1,
-						'private'			  	=> 0
+						'private'			  	=> Input::get('privado')
 
 
 
@@ -212,7 +212,7 @@ if (Input::exits()) {
 
 
 										$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
-										 Config::get('sendpulse/smtp_port'));
+										 Config::get('sendpulse/smtp_port'),'ssl');
 										$transport->setUsername(Config::get('sendpulse/login_username'));
 										$transport->setPassword(Config::get('sendpulse/login_password'));
 										$swift = Swift_Mailer::newInstance($transport);

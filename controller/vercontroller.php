@@ -26,13 +26,14 @@ if (!$requestVal) {
 }
 
 # si el ticket es privado
-
+$hiden = false;
 if ($requestVal[0]->private) {
 	# 1 = privado; 0 = publico ...
 	if (!$ticket->isInvol($requestVal[0]->id,$user->data()->id)) {
 		# si no esta involucrado lo sentimos ...
-		Session::flash('error','Upps.. no tiene permiso para visualizar este ticket ..');
-		Redirect::to('404');
+	//	Session::flash('error','Upps.. no tiene permiso para visualizar este ticket ..');
+	//Redirect::to('?accion=close');
+	$hiden = true;
 	}
 
 }
@@ -47,6 +48,10 @@ $perfil 	= new Usuario();
 $perfilInfo = $perfil->perfilInfobyUserId($requestVal[0]->user_id);
 
 //print_r($requestVal[0]);
+
+# email de los usuarios registrados
+#
+$email_user_form = $user->get_email_and_name_all();
 
 # tomar las respuestas del ticket
 require_once 'model/Respuesta.php';
@@ -164,7 +169,7 @@ if (Input::exits()) {
 
 
 					$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
-					 Config::get('sendpulse/smtp_port'));
+					 Config::get('sendpulse/smtp_port'),'ssl');
 					$transport->setUsername(Config::get('sendpulse/login_username'));
 					$transport->setPassword(Config::get('sendpulse/login_password'));
 					$transport->setLocalDomain('[tecnicos2]');

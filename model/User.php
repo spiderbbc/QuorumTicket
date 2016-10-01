@@ -66,9 +66,9 @@ $query = $this->_db->query("
 
 		UPDATE users,perfiles
 		SET
-
-		    users.password = ?,
-				users.salt     = ?,
+				users.username =  ?,
+		    users.password =  ?,
+				users.salt     =  ?,
 				perfiles.nombre = ?,
 		    perfiles.id_departamento= ?,
 		    perfiles.cargo = ?,
@@ -221,11 +221,12 @@ if ($query->error()) {
 			# code...
 			$perfil = $this->_db->query('
 
-			select p.nombre AS nombre,
-		       d.nombre AS departamento,
-		       p.cargo  AS cargo,
-					 p.img    AS img,
-		       p.ext    AS extencion
+			SELECT 
+			p.nombre AS nombre,
+		  d.nombre AS departamento,
+		  p.cargo  AS cargo,
+			p.img    AS img,
+		  p.ext    AS extencion
 
 		       FROM qtelecom.perfiles p
 

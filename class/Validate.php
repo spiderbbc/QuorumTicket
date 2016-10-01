@@ -99,6 +99,18 @@ class Validate
 
 							break;
 
+							case 'update':
+								# validador que en el proceso de actualizacion de un campo
+								# permitira que se conserve el mismo valor si viene del mismo usuario evitando que
+								# entre en conflicto con el validador unique y duplicidad en la base de dato
+								$user = $this->_db->get('users',array($field,'=',$source));
+								if ($user->count()) {
+									# si hay una cuenta..
+									$data = $user->firts->id;
+									$this->addError("El usuario:{$source} no esta disponible");
+								}
+							break;
+
 						default:
 							# code...
 							break;

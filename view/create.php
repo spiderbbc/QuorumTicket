@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es-VE">
   <title>Crear Ticket</title>
-  	<link rel="stylesheet" type="text/css" href="/QTelecom/static/css/style.css">
+
     <link rel="stylesheet" type="text/css" href="/QTelecom/static/css/prism.css">
     <link rel="stylesheet" type="text/css" href="/QTelecom/static/css/chosen.css">
   <?php include_once 'templates/header.php' ?>
@@ -95,7 +95,7 @@
                 <input class="form-control" type="text" placeholder="emails" id="email" name="email" value="<?php echo Input::get('email') ?>">
               -->
 
-                <select data-placeholder="Usuarios a involucrar en el ticket" style="width:600px;" id="email" name="email[]" class="chosen-select" multiple="multiple" required>
+                <select data-placeholder="Usuarios a involucrar en el ticket" style="width:620px;" id="email" name="email[]" class="chosen-select" multiple="multiple" required>
                   <option value=""></option>
                   <optgroup label="Quorum Ticket Usuarios registrados:">
 
@@ -111,10 +111,18 @@
 
                 </select>
 
+                <br>
+                  <br>
+
+                <label for="">Privado</label><br>
+
+
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"> </span> <input type="checkbox" name="privado" value = 1> Solo los involucrados al ticket tendran acceso
 
 
 
-                <label for="msg">Texto</label>
+                    <br>
+                <label for="msg"></label>
                 <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard" >
 
                 </textarea>

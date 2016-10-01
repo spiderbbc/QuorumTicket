@@ -61,6 +61,10 @@
     <!--  <label for="username" class="col-sm control-label">Username:</label>
       <input type="text" name="username" value="<?php # echo $user->data()->username ?>" placeholder="Ingrese su Username">
  -->
+      <label for="nombre" class="col-sm control-label">Username:</label>
+      <input type="text" name="username" value="<?php echo $user->data()->username ?>" placeholder="Ingrese su username">
+
+
       <label for="nombre" class="col-sm control-label">Nombre:</label>
       <input type="text" name="nombre" value="<?php echo $perfil->data()[0]->nombre ?>" placeholder="Ingrese su nombre">
 

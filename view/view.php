@@ -1,8 +1,11 @@
 
 <!DOCTYPE html>
 <html lang="es-VE" ng-app="postApp">
-  <title>Ver Ticket</title>
+  <title>Ver Ticket!!</title>
 <link rel="stylesheet" href="/QTelecom/static/css/chat.css" media="screen" title="no title" charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="/QTelecom/static/css/prism.css">
+<link rel="stylesheet" type="text/css" href="/QTelecom/static/css/chosen.css">
   <?php include_once 'templates/header.php' ?>
 
 <body ng-controller="postController">
@@ -58,7 +61,12 @@
 
                                 <?php echo $value->fecha ?>
                               </div>
-                              <div class="message">
+                              <?php if ($hiden): ?>
+                                <div class="message blur">
+                              <?php else: ?>
+                                <div class="message">
+                              <?php endif; ?>
+
                                 <div class="hider">
                                   <span>Click para ver..</span><!-- futura version -->
                                 </div>
@@ -91,15 +99,30 @@
             </div>
 
 
-          <center><button type="button" class="btn btn-default" ng-click="ShowForm()" ng-hide="FormVisibility">Responder</button></center>
+        <?php if (!$hiden): ?>
+            <center><button type="button" class="btn btn-default" ng-click="ShowForm()" ng-hide="FormVisibility">Responder</button></center>
+        <?php endif; ?>
 
           <div class="row" ng-show="FormVisibility">
             <form action="" method="POST" class="form-horizontal" role="form" ng-submit="submitForm()">
+              <label for="email">Email:</label><br>
+              <select data-placeholder="Usuarios a involucrar en el ticket" style="width:650px;" id="email" name="email[]" class="chosen-select" multiple="multiple" >
+                <option value=""></option>
+                <optgroup label="Quorum Ticket Usuarios registrados:">
 
-              <label for="email">Email:</label>
-              <input class="form-control" type="text" placeholder="emails" id="email" name="email" value="<?php echo Input::get('email') ?>">
+                  <?php for ($i = 0; $i < count($email_user_form); $i++): ?>
+                    <option value="<?php echo $email_user_form[$i]->email ?>"><?php echo $email_user_form[$i]->nombre ?></option>
+                  <?php endfor; ?>
 
+              <!--    <option value="spiderbbc@gmail.com">Eduardo Morales</option>
+                  <option value="Jhonathan@gmail.com">Jhonathan Herrera</option>
+                  <option value="Thais@gmail.com">Thais Ravelo</option>
+                  <option value="Yanethis@gmail.com">Yanethis Quintana</option> -->
+                </optgroup>
 
+              </select>
+              <br>
+              <br>
 
             <label for="msg">Texto</label>
                 <textarea class="form-control" name="msg" id="msg" rows="10" cols="80" wrap="hard">
@@ -120,8 +143,14 @@
           <input type="hidden" name="token" id="inputToken" class="form-control" value="<?php echo $token ?>">
               <div class="form-group">
                 <div class="col-sm-12">
+
+
+
+
                     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
                     Responder</button>
+
+
                   </div>
               </div>
           </form>
@@ -181,7 +210,22 @@
 
   </div>
   <!-- /.container-fluid -->
-
+  <!-- Chosen: para el cuadro email -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+  <script src="/QTelecom/static/js/chosen.jquery.js" type="text/javascript"></script>
+  <script src="/QTelecom/static/js/prism.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 
 </body>
 <?php include_once 'templates/footer.php' ?>

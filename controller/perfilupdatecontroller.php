@@ -45,6 +45,17 @@ if (Input::exits()) {
 
 
 
+      'username' => array(
+
+        'required' => true,
+        'min'	     => 5,
+        'max'	     => 20,
+        //'unique'   => true,
+        'update'   => $user->data()->id
+
+        ),
+
+
         'nombre' => array(
 
     			'required' => true,
@@ -130,6 +141,7 @@ if (Input::exits()) {
 
               try {
                   $userUpdate = $update->update($user->data()->id,array(
+                  trim(Input::get('username')),
                   $password,
                   $salt,
                   Input::get('nombre'),

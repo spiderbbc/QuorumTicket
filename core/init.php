@@ -3,18 +3,18 @@ session_start();
 setlocale(LC_TIME,"es_VE.UTF-8");
 
 // heroku config
-$url = getenv('JAWSDB_MARIA_URL');
-$dbparts = parse_url($url);
+//$url = getenv('JAWSDB_MARIA_URL');
+//$dbparts = parse_url($url);
 
 	$GLOBALS['config'] = array(
 
 		'mysql' => array(
 
-			'host'    => $dbparts['host'],
+			'host'    => '127.0.0.1',
 			'port'		=> '5432',
-			'username'=> $dbparts['user'],
-			'password'=> $dbparts['pass'],
-			'db'      => ltrim($dbparts['path'],'/')
+			'username'=> 'root',
+			'password'=> 'deathnote',
+			'db'      => 'qtelecom'
 
 			),
 
@@ -30,10 +30,10 @@ $dbparts = parse_url($url);
 
 			'sendpulse' => array(
 
-				'smtp_server'  				 => 'smtp-pulse.com',
-				'smtp_port'    				 => '2525',
-				'login_username' 			 => 'ecastro@quorumtelecom.info',
-				'login_password'       => '4Ng4YG92iEk6MK',
+				'smtp_server'  				 => 'smtp.gmail.com',
+				'smtp_port'    				 => '465',
+				'login_username' 			 => 'spiderbbc@gmail.com',
+				'login_password'       => 'deathnote254242',
 				'system_name'					 => 'Quorum Ticket'
 
 				),
