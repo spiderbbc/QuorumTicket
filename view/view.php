@@ -187,11 +187,16 @@
 
               <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-              <?php if ($requestVal[0]->id_status == 1): ?>
-                  <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-danger" name="button" href="someplace.php">Cerrar</a>
-              <?php else: ?>
-                    <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-info" name="button">Abrir</a>
-              <?php endif; ?>
+
+                  <?php if (!$hiden): ?>
+                    <?php if ($requestVal[0]->id_status == 1): ?>
+                        <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-danger" name="button" href="someplace.php">Cerrar</a>
+                    <?php else: ?>
+                          <a href="?accion=status&valor=<?php echo $requestVal[0]->uuid ?>" type="submit" class="btn btn-info" name="button">Abrir</a>
+                    <?php endif; ?>
+                  <?php endif; ?>
+
+
                 </div>
               </div>
 

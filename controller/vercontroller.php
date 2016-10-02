@@ -77,8 +77,8 @@ if (Input::exits()) {
 
 			'email' => array(
 			//	'required' => false,
-				'min'      => 5,
-				'filter'   => 'FILTER_VALIDATE_EMAIL',
+			//	'min'      => 5,
+				'filter'   => FILTER_VALIDATE_EMAIL,
 
 			),
 

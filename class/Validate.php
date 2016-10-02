@@ -22,10 +22,13 @@ class Validate
 	public function check($request,$fields = array())
 	{
 		# valida los inputs mediante una serie de reglas...
+
 		# source = [ username =>'aaaa','password'=>'aaaaa']
 		#field = username,password,email
+
 		#rule = min,max,required
 		#rule_value = true,20,10
+
 		foreach ($fields as $field => $rules) {
 			# code...
 			foreach ($rules as $rule => $rule_value) {
@@ -75,22 +78,24 @@ class Validate
 								$this->addError("El usuario:{$source} no esta disponible");
 							}
 							break;
+
 						case 'filter':
 							# validamos mediante filter_var con un filtro en especifico..
-							$arrayEmail = explodeBy(';',$source);
-							if (count($arrayEmail)> 1) {
+						//	$arrayEmail = explodeBy(';',$source);
+						// cambiado ya que chosen quito la necesidad de separar por (;)
+							if (count($source)> 1) {
 								# si hay mas de un email separado por ';' ..
 								# entonces recorremos
-								foreach ($arrayEmail as $email) {
+								foreach ($source as $email) {
 									# code...
-									if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+									if (!filter_var($email,$rule_value)) {
 										# si no pasa el filtro no es email...
 										$this->addError("las siguientes direcciones email no son validas {$email}");
 									}
 								}
 							} else {
 								# code...
-								if (!filter_var($arrayEmail[0],FILTER_VALIDATE_EMAIL)) {
+								if (!filter_var($source[0],$rule_value)) {
 									# solo validamos...
 									$this->addError("las siguientes direcciones email no son validas {$arrayEmail[0]}");
 								}
@@ -99,17 +104,27 @@ class Validate
 
 							break;
 
-							case 'update':
+
+
+						case 'update':
 								# validador que en el proceso de actualizacion de un campo
 								# permitira que se conserve el mismo valor si viene del mismo usuario evitando que
 								# entre en conflicto con el validador unique y duplicidad en la base de dato
 								$user = $this->_db->get('users',array($field,'=',$source));
 								if ($user->count()) {
 									# si hay una cuenta..
-									$data = $user->firts->id;
-									$this->addError("El usuario:{$source} no esta disponible");
+									$data = $user->firts()->id;
+									if ($data != $rule_value) {
+										# code...
+											$this->addError("El usuario:{$source} no esta disponible");
+									}
+
 								}
 							break;
+
+
+
+
 
 						default:
 							# code...
