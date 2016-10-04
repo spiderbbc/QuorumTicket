@@ -41,6 +41,8 @@ class Usuario
 
 	public function create($fields = array())
 	{
+		$nombre = $fields['nombre'];
+		unset($fields['nombre']);
 		# crea a un usuario ..
 
 		if (!$this->_db->insert('users',$fields)) {
@@ -49,7 +51,7 @@ class Usuario
 
 		}
 
-		if ($this->temporalPerfil($this->_db->last_insert())) {
+		if ($this->temporalPerfil($this->_db->last_insert(),$nombre)) {
 			# si tenemos el ultimo el id ....
 			return true;
 		}
@@ -153,7 +155,7 @@ if ($query->error()) {
 	}
 
 
-	public function temporalPerfil($id)
+	public function temporalPerfil($id,$nombre)
 	{
 		# creara un perfil temporal ....
 		if ($id) {
@@ -161,10 +163,10 @@ if ($query->error()) {
 			$temporalperfil = $this->_db->insert('perfiles',array(
 				'user_id'         => $id,
 				'id_departamento' => '4',
-				'nombre'          => 'Sin Asignar',
+				'nombre'          => $nombre,
 				'cargo' 					=> 'desconocido',
 				'ext' 						=> '0000',
-				'img' 						=> 'Q.png'
+				'img' 						=> ucwords($nombre[0]).'.png'
 
 			));
 			#die($id);
@@ -221,7 +223,7 @@ if ($query->error()) {
 			# code...
 			$perfil = $this->_db->query('
 
-			SELECT 
+			SELECT
 			p.nombre AS nombre,
 		  d.nombre AS departamento,
 		  p.cargo  AS cargo,

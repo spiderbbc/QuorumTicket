@@ -61,9 +61,19 @@
 
 						<div class="form-group">
 							<div class="form-group">
-								<label for="username" class="col-sm-4 control-label">Username:</label>
+
+
+
+
+
 								<div class="col-sm-12">
+									<label for="nombre" class="control-label">Nombre:</label>qqqqq
+									<input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo Input::get('username') ?>" title="" autocomplete="off">
+
+									<label for="username" class="control-label">Username:</label>
+
 									<input type="text" name="username" id="username" class="form-control" value="<?php echo Input::get('username') ?>" title="" autocomplete="off">
+
 
 
 

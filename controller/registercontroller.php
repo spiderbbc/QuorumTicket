@@ -30,7 +30,8 @@ if (Input::exits()) {
 
 			'required' => true,
 			'min'	   => 5,
-			'max'	   => 50
+			'max'	   => 50,
+			'unique'   => true
 
 			),
 
@@ -64,7 +65,7 @@ if (Input::exits()) {
 
 
 			$user->create(array(
-
+				'nombre'   => Input::get('nombre'),
 				'username' => Input::get('username'),
 				'password' => Hash::make(Input::get('password'),$salt),
 				'salt'     => $salt,
