@@ -84,7 +84,7 @@ if (Input::exits()) {
 
 		if ($user == true) {
 			# code...
-			Session::flash('succes','Ya se encuentra registrado en el Sistema');
+			Session::flash('login', 'Se guardo de manera exitosa la informacion');
 			Redirect::to('?accion=login');
 		}
 

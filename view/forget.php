@@ -27,19 +27,7 @@
 
 
 
-<!--
-	<img src="/QTelecom/static/img/avatar.gif" class="img-circle" alt="Image" width="120px" ></h1>
--->
 
-	<?php if ($msg = Session::flash('login')): ?>
-
-		<script type="text/javascript">
-
-			swal("Sweet...", "<?php echo $msg ?>!", "success");
-			console.log("corriendo ...");
-		</script>
-
-	<?php endif ?>
 
 
 
@@ -49,39 +37,22 @@
   <img src="/QTelecom/static/img/avatar.gif" alt="Logo" title="Logo" width="138">
   </div>
   <h1 class="display1">Quorum Ticket</h1>
-  <p class="subhead">Iniciar Sesion</p>
+  <p class="subhead">Olvide la Contraseña</p>
   <form action="" method="POST"  role="form">
     <div id="form-login-username" class="form-group">
-      <input id="username" class="form-control" name="username" type="text" size="18" alt="login" required />
+      <input id="username" class="form-control" name="email" type="text" size="18" alt="login" required />
       <span class="form-highlight"></span>
       <span class="form-bar"></span>
-      <label for="username" class="float-label">login</label>
+      <label for="email" class="float-label">Email</label>
     </div>
-    <div id="form-login-password" class="form-group">
-      <input id="passwd" class="form-control" name="password" type="password" size="18" alt="password" required>
-      <span class="form-highlight"></span>
-      <span class="form-bar"></span>
-      <label for="password" class="float-label">password</label>
-    </div>
-    <div id="form-login-remember" class="form-group">
 
-			<div class="checkbox checkbox-default">
-          <input id="remember" type="checkbox" value="yes" alt="Remember me" class="">
-          <label for="remember">Recordarme</label>
-      </div>
 
-			<div class="checkbox checkbox-default">
-
-          <label for="forget"><a href="?accion=forget">Olvide la Contraseña</a></label>
-      </div>
-
-    </div>
     <div>
 			<input type="hidden" name="token" id="input" class="form-control" value="<?php echo Token::generate() ?>">
 
-      <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in">Iniciar</button>
+      <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in">Restablecer</button>
+      <a href="?accion=login" class="btn btn-block btn-info ripple-effect">Regresame al Login</a>
 
-			<a href="?accion=register" class="btn btn-block btn-info ripple-effect">Registrarse</a>
 		</div>
 
     </div>

@@ -91,6 +91,10 @@
 
 - 01/10/2016(Home): finalizado el validador update y corregido el validador filter
 
+- 04/10/2016(Home): Agregado el campo 'nombre' en register - persistencia de la imagen del perfil de usuario
+
+- 05/10/2016(Office): Cambiada las vistas register y login - creado el controller forget para usuarios que olviden sus contraseñas - creada la vista forget para el controlador antes mencionado 
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

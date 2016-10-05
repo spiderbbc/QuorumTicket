@@ -8,8 +8,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Title Page</title>
 
-		<!-- Bootstrap CSS -->
+		<!-- Bootstrap CSS
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		-->
+		<link rel="stylesheet" href="/QTelecom/static/css/login.css" media="screen" title="no title">
 		<script src="/QTelecom/bower_components/sweetalert/dist/sweetalert.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/QTelecom/bower_components/sweetalert/dist/sweetalert.css">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,87 +24,94 @@
 	<body>
 		<h1 class="text-center"></h1>
 
+		<?php if (!empty($errores)): ?>
+		<?php $set = '';  ?>
+		<?php foreach ($errores as $error): ?>
+
+
+		<?php $set .= "<li>{$error}</li> " ?>
+
+		<!-- <div class="alert alert-info" role="alert"><?php echo $error ?></div> -->
+
+
+
+		<?php endforeach ?>
+
+		<script type="text/javascript">
+
+
+		swal({
+			title: "Upps...",
+			text: "<ul><?php echo $set; ?></ul>",
+			html: true
+		});
+
+		</script>
+
+		<?php endif ?>
+
+
 
 		<div class="container">
-			<div class="row">
-				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
-			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<form action="" method="POST" class="form-horizontal" role="form">
-						<div class="form-group">
-							<legend>Formulario de Registro</legend>
-						</div>
+		<div id="login" class="signin-card">
+		  <div class="logo-image">
+		  <img src="/QTelecom/static/img/avatar.gif" alt="Logo" title="Logo" width="138">
+		  </div>
+		  <h1 class="display1">Quorum Ticket</h1>
+		  <p class="subhead">Registrarme</p>
+		  <form action="" method="POST"  role="form">
 
-						<?php # echo Input::get('token') ?>
-						<?php if (!empty($errores)): ?>
-						<?php $set = '';  ?>
-						<?php foreach ($errores as $error): ?>
-
-
-						<?php $set .= "<li>{$error}</li> " ?>
-
-			<!-- <div class="alert alert-info" role="alert"><?php echo $error ?></div> -->
+				<div id="form-login-username" class="form-group">
+		      <input id="nombre" class="form-control" name="nombre" type="text" size="18" alt="register" required />
+		      <span class="form-highlight"></span>
+		      <span class="form-bar"></span>
+		      <label for="nombre" class="float-label">nombre</label>
+		    </div>
 
 
 
-						<?php endforeach ?>
+				<div id="form-login-username" class="form-group">
+		      <input id="username" class="form-control" name="username" type="text" size="18" alt="register" required />
+		      <span class="form-highlight"></span>
+		      <span class="form-bar"></span>
+		      <label for="username" class="float-label">username</label>
+		    </div>
 
-						<script type="text/javascript">
-
-
-						swal({
-						  title: "Upps...",
-						  text: "<ul><?php echo $set; ?></ul>",
-						  html: true
-						});
-
-						</script>
-
-						<?php endif ?>
-
-						<div class="form-group">
-							<div class="form-group">
+				<div id="form-login-username" class="form-group">
+		      <input id="email" class="form-control" name="email" type="email" size="18" alt="register" required />
+		      <span class="form-highlight"></span>
+		      <span class="form-bar"></span>
+		      <label for="email" class="float-label">email</label>
+		    </div>
 
 
 
+		    <div id="form-login-password" class="form-group">
+		      <input id="passwd" class="form-control" name="password" type="password" size="18" alt="password" required>
+		      <span class="form-highlight"></span>
+		      <span class="form-bar"></span>
+		      <label for="password" class="float-label">password</label>
+		    </div>
 
+				<div id="form-login-password" class="form-group">
+		      <input id="passwd" class="form-control" name="password_again" type="password" size="18" alt="password" required>
+		      <span class="form-highlight"></span>
+		      <span class="form-bar"></span>
+		      <label for="password" class="float-label">repite el password</label>
+		    </div>
 
-								<div class="col-sm-12">
-									<label for="nombre" class="control-label">Nombre:</label>qqqqq
-									<input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo Input::get('username') ?>" title="" autocomplete="off">
+		    <div>
+					<input type="hidden" name="token" id="input" class="form-control" value="<?php echo Token::generate() ?>">
 
-									<label for="username" class="control-label">Username:</label>
+		      <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in">Guardar</button>
 
-									<input type="text" name="username" id="username" class="form-control" value="<?php echo Input::get('username') ?>" title="" autocomplete="off">
+				</div>
 
-
-
-
-									<label for="email" class="control-label">Email:</label>
-									<input type="email" name="email" id="email" class="form-control" value="" title="">
-
-									<label for="password" class="control-label">Password:</label>
-									<input type="password" name="password" id="password" class="form-control" title="">
-
-
-									<label for="password_again" class=" control-label">Password de nuevo:</label>
-									<input type="password" name="password_again" id="password" class="form-control"  title="">
-
-									<input type="hidden" name="token" id="input" class="form-control" value="<?php echo Token::generate() ?>">
-
-								</div>
-
-
-
-							</div>
-							<div class="col-sm-10 col-sm-offset-2">
-								<button type="submit" class="btn btn-primary">Guardar</button>
-							</div>
-						</div>
-				</form>
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+		    </div>
+		  </form>
 		</div>
-			</div>
+		</div>
+
 
 
 		<!-- jQuery -->

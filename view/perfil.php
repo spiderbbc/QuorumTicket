@@ -17,7 +17,7 @@
 
  <div class="row center">
 
-   <?php if ($msg = Session::flash('succes')): ?>
+   <?php if ($msg = Session::flash('update')): ?>
 
      <script type="text/javascript">
 

@@ -163,7 +163,7 @@ if (Input::exits()) {
               // o pudo fallar la actualizacion y dar falso
               if (isset($userUpdate) && $userUpdate == true) {
                 # si no hay errores al guardar el perfil ..
-                Session::flash('succes', 'Se guardo de manera exitosa la informacion');
+                Session::flash('update', 'Se guardo de manera exitosa la informacion');
                 Redirect::to('?accion=perfil');
               }else {
                 #  se envia a una pagian de error ..
