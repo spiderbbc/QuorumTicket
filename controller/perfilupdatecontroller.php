@@ -140,7 +140,7 @@ if (Input::exits()) {
           $update= new Usuario();
 
               try {
-                  $userUpdate = $update->update($user->data()->id,array(
+                  $userUpdate = $update->updatePerfil($user->data()->id,array(
                   trim(Input::get('username')),
                   $password,
                   $salt,

@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Olvide la clave</title>
+		<title>Recuperar la clave</title>
 		<link rel="stylesheet" href="/QTelecom/static/css/login.css" media="screen" title="no title">
 		<!-- Bootstrap CSS
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -34,23 +34,33 @@
 <div class="container">
 <div id="login" class="signin-card">
   <div class="logo-image">
-  <img src="/QTelecom/static/img/avatar.gif" alt="Logo" title="Logo" width="138">
+  <img src="/QTelecom/static/img/perfil/<?php echo $perfil->data()[0]->img ?>" alt="Logo" title="Logo" width="138">
   </div>
-  <h1 class="display1">Quorum Ticket</h1>
-  <p class="subhead">Olvide la Contraseña</p>
+  <h1 class="display1">Hola!! <?php echo $perfil->data()[0]->nombre ?> </h1>
+  <p class="subhead">Por favor</p>
+  <p class="subhead">Ingrese la nueva Contraseña</p>
   <form action="" method="POST"  role="form">
-    <div id="form-login-username" class="form-group">
-      <input id="username" class="form-control" name="email" type="email" size="18" alt="login" required />
+
+
+    <div id="form-login-password" class="form-group">
+      <input id="passwd" class="form-control" name="password" type="password" size="18" alt="password" required>
       <span class="form-highlight"></span>
       <span class="form-bar"></span>
-      <label for="email" class="float-label">Email</label>
+      <label for="password" class="float-label">password</label>
+    </div>
+
+    <div id="form-login-password" class="form-group">
+      <input id="passwd" class="form-control" name="password_again" type="password" size="18" alt="password" required>
+      <span class="form-highlight"></span>
+      <span class="form-bar"></span>
+      <label for="password" class="float-label">repite el password</label>
     </div>
 
 
     <div>
 			<input type="hidden" name="token" id="input" class="form-control" value="<?php echo $token ?>">
 
-      <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in">Enviarme el Correo</button>
+      <button class="btn btn-block btn-info ripple-effect" type="submit" name="Submit" alt="sign in">Restablecer</button>
       <a href="?accion=login" class="btn btn-block btn-info ripple-effect">Regresame al Login</a>
 
 		</div>

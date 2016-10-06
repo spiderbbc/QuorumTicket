@@ -83,7 +83,7 @@ class Validate
 							# validamos mediante filter_var con un filtro en especifico..
 						//	$arrayEmail = explodeBy(';',$source);
 						// cambiado ya que chosen quito la necesidad de separar por (;)
-							if (count($source)> 1) {
+							if (count($source) > 1) {
 								# si hay mas de un email separado por ';' ..
 								# entonces recorremos
 								foreach ($source as $email) {
@@ -95,9 +95,9 @@ class Validate
 								}
 							} else {
 								# code...
-								if (!filter_var($source[0],$rule_value)) {
+								if (!filter_var($source,$rule_value)) {
 									# solo validamos...
-									$this->addError("las siguientes direcciones email no son validas {$arrayEmail[0]}");
+									$this->addError("las siguientes direcciones email no son validas {$source}");
 								}
 							}
 

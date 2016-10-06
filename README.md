@@ -93,7 +93,9 @@
 
 - 04/10/2016(Home): Agregado el campo 'nombre' en register - persistencia de la imagen del perfil de usuario
 
-- 05/10/2016(Office): Cambiada las vistas register y login - creado el controller forget para usuarios que olviden sus contraseñas - creada la vista forget para el controlador antes mencionado 
+- 05/10/2016(Office): Cambiada las vistas register y login - creado el controller forget para usuarios que olviden sus contraseñas - creada la vista forget para el controlador antes mencionado.
+
+- 06/07/2016(Office): terminado el controllador forget - envia un correo con link al formulario para cambiar contraseña.
 
 ## License
 

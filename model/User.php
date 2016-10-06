@@ -60,7 +60,7 @@ class Usuario
 
 	}
 
-	public function update($id_user,$fields = array())
+	public function updatePerfil($id_user,$fields = array())
 	{
 		# actualiza un usuario en la vista de perfilUpdate ...
 
@@ -307,9 +307,17 @@ if ($query->error()) {
 		return false;
 	}
 
-	public function updatePerfil($value='')
+	public function update($id,$fields = array())
 	{
-		# code...
+		# actualizar tabla user mediante los campos.
+		if (count($fields)) {
+			# si hay cuenta en el array.
+			if (!$this->_db->update($id,$fields)) {
+				# code...
+				throw new Exception("Problemas al actualizar", 1);
+
+			}
+		}
 	}
 
 	public function logout()
