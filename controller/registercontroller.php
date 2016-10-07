@@ -31,6 +31,7 @@ if (Input::exits()) {
 			'required' => true,
 			'min'	   => 5,
 			'max'	   => 50,
+			'filter'   => FILTER_VALIDATE_EMAIL,
 			'unique'   => true
 
 			),

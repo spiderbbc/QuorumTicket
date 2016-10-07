@@ -95,7 +95,9 @@
 
 - 05/10/2016(Office): Cambiada las vistas register y login - creado el controller forget para usuarios que olviden sus contraseñas - creada la vista forget para el controlador antes mencionado.
 
-- 06/07/2016(Office): terminado el controllador forget - envia un correo con link al formulario para cambiar contraseña.
+- 06/10/2016(Office): terminado el controllador forget - envia un correo con link al formulario para cambiar contraseña.
+
+- 07/10/2016(Office): persistencia en la actualizacion de la contraseña - metodo update - cambiada la vista view para los no involucrados en el ticket.
 
 ## License
 

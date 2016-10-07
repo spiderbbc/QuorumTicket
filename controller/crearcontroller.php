@@ -71,12 +71,12 @@ if (Input::exits()) {
 							'required' => true,
 						),
 
-					//	'email' => array(
-					//		'required' => true,
-						//	'min'      => 5,
-					//		'filter'   => 'FILTER_VALIDATE_EMAIL',
+						'email' => array(
+							'required' => true,
+							'min'      => 5,
+							'filter'   => FILTER_VALIDATE_EMAIL,
 
-					//	),
+						),
 
 						'msg' => array(
 							'required' => true,

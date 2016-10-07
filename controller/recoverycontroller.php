@@ -46,6 +46,7 @@ if (Input::exits()) {
       $update= new Usuario();
 
           try {
+
               $userUpdate = $update->update('users',$user->data()->id,array(
 
                 'password' => $password,

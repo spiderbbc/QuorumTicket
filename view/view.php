@@ -10,7 +10,11 @@
 
 <body ng-controller="postController">
 
-
+  <script type="text/javascript">
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
+  </script>
    <div class="container">
     <?php include_once 'templates/nav-bar.php'; ?>
    </div>
@@ -30,6 +34,11 @@
 
   <div class="row">
 
+
+
+
+
+
 		<div class="col-sm-2"></div>
         <div class="col-sm-6 ">
 
@@ -43,6 +52,9 @@
           <br>
               <br>
             <div class="row">
+
+
+
 
               <?php if ($respuestas): ?>
                 <?php foreach ($resp->data() as $key => $value): ?>
@@ -67,8 +79,15 @@
                                 <div class="message">
                               <?php endif; ?>
 
+
+
+
+
                                 <div class="hider">
-                                  <span>Click para ver..</span><!-- futura version -->
+                                  <span><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                                    Solicitar ver el ticket
+                                  </button>
+                                    </span><!-- futura version -->
                                 </div>
                                 <p>
                                   <span>Nombre: <?php echo $value->nombre ?></span><br>
@@ -91,7 +110,15 @@
                 <div class="well">
                     <p>
                       Nadie a Comentado este Ticket ..
+
                     </p>
+                    <?php if ($hiden): ?>
+                      <div class="col-md-9 col-md-offset-4">
+                        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                          Solicitar Unirme al Ticket
+                        </button>
+                      </div>
+                    <?php endif; ?>
                 </div>
               <?php endif; ?>
 
@@ -209,7 +236,32 @@
 
       </div><!-- /.row -->
 
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Solicitud para unirme al ticket</h4>
+            </div>
+            <div class="modal-body">
+              Mediante a esta solicitud se le enviara un correo electronico al autor del ticket en la cual puede aceptar o rechazar tu solicitud<br>
+              <br>
+               Titulo:  <?php echo $requestVal[0]->titulo ?> <br>
+               Autor: <?php echo $perfil->data()[0]->nombre;  ?><br>
+               Departamento: <em><?php echo $perfil->data()[0]->departamento;?></em>.<br>
+               Cargo: <em><?php echo $perfil->data()[0]->cargo;?></em>.<br>
+               Extencion: <em><?php echo $perfil->data()[0]->extencion; ?></em>
 
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-danger" data-dismiss="modal">No gracias!!</a>
+              <a href="#" class="btn btn-primary">Enviar la Solicitud</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 

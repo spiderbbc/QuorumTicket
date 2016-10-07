@@ -307,12 +307,12 @@ if ($query->error()) {
 		return false;
 	}
 
-	public function update($id,$fields = array())
+	public function update($table,$id,$fields = array())
 	{
 		# actualizar tabla user mediante los campos.
 		if (count($fields)) {
 			# si hay cuenta en el array.
-			if (!$this->_db->update($id,$fields)) {
+			if (!$this->_db->update($table,$id,$fields)) {
 				# code...
 				throw new Exception("Problemas al actualizar", 1);
 
