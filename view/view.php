@@ -256,7 +256,7 @@
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-danger" data-dismiss="modal">No gracias!!</a>
-              <a href="#" class="btn btn-primary">Enviar la Solicitud</a>
+              <a href="?accion=send&valor=<?php echo $requestVal[0]->id ?>" class="btn btn-primary">Enviar la Solicitud</a>
 
             </div>
           </div>

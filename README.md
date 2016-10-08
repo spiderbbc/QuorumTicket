@@ -99,6 +99,8 @@
 
 - 07/10/2016(Office): persistencia en la actualizacion de la contraseña - metodo update - cambiada la vista view para los no involucrados en el ticket.
 
+- 07/10/2016(Home): solicitud al autor del ticket cuando un usuario desea unirse a un ticket en la cual no fue incluido.
+
 ## License
 
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
