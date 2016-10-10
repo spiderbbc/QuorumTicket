@@ -60,7 +60,8 @@ if (Input::exits()) {
 
       if ($recipients = $swift->send($message, $failures))
             {
-            Redirect::to('?accion=ver&valor='.$data[0]->uuid);
+            Session::flash('login','Se envio un email a tu correo electronico para restablecer la contraseña');
+            Redirect::to('?accion=logout');
               } else {
              echo "There was an error:\n";
              print_r($failures);

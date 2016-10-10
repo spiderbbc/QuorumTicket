@@ -63,6 +63,8 @@ $message->addPart($text, 'text/plain');
 
 if ($recipients = $swift->send($message, $failures))
       {
+      Session::delete('home');
+      Session::flash('home','Se envio un email al autor del ticket, atento a cualquier respuesta');
       Redirect::to('?accion=home');
         } else {
        echo "There was an error:\n";

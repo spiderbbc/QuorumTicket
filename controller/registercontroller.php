@@ -85,8 +85,9 @@ if (Input::exits()) {
 
 		if ($user == true) {
 			# code...
+			Session::delete('login');
 			Session::flash('login', 'Se guardo de manera exitosa la informacion');
-			Redirect::to('?accion=login');
+			Redirect::to('?accion=logout');
 		}
 
 	}else{

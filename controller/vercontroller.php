@@ -78,7 +78,7 @@ if (Input::exits()) {
 			'email' => array(
 			//	'required' => false,
 			//	'min'      => 5,
-				'filter'   => FILTER_VALIDATE_EMAIL,
+			//	'filter'   => FILTER_VALIDATE_EMAIL,
 
 			),
 
@@ -87,7 +87,7 @@ if (Input::exits()) {
 		if ($validate->passed()) {
 			# si paso por las reglas de validacion.
 
-			$model     = new Respuesta();
+	$model     = new Respuesta();
 
 	$respuesta = $model->create(array(
 

@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 /**
-* 
+*
 */
-class Session 
+class Session
 {
-	
+
 	function __construct()
 	{
 		# code...
@@ -51,4 +51,3 @@ class Session
 		}
 	}
 }
-

@@ -162,7 +162,7 @@ if ($query->error()) {
 			# si hay un id ...
 			$temporalperfil = $this->_db->insert('perfiles',array(
 				'user_id'         => $id,
-				'id_departamento' => '4',
+				'id_departamento' => '5',
 				'nombre'          => $nombre,
 				'cargo' 					=> 'desconocido',
 				'ext' 						=> '0000',

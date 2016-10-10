@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html lang="es-VE">
   <title>Title Page</title>
+
+  <!-- SweetAlert -->
+  <script src="/QTelecom/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Sweet Alert -->
+  <link rel="stylesheet" type="text/css" href="/QTelecom/bower_components/sweetalert/dist/sweetalert.css">
+
 	<?php include_once 'templates/header.php' ?>
 
 
@@ -25,6 +31,8 @@
 	</script>
 	<body>
 
+
+
   <?php
 
    /*foreach ($tickets->data() as $key => $value) {
@@ -39,6 +47,17 @@
 
 	      <?php include_once 'templates/nav-bar.php'; ?>
 
+        <?php #var_dump(Session::flash('home')) ?>
+            <?php if ($msg = Session::flash('home')): ?>
+
+              <script type="text/javascript">
+
+                swal("Sweet...", "<?php echo $msg ?>!", "success");
+                console.log("corriendo ...");
+              </script>
+
+            <?php endif ?>
+
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
 
@@ -49,6 +68,7 @@
 	          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
 	        </p>
 	        </div> -->
+
 
         <?php if (!$ticket->listar()->error()): ?>
 
@@ -121,5 +141,7 @@
 
 
  		</body>
+
     <?php include_once 'templates/footer.php' ?>
+
 </html>

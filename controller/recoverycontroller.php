@@ -56,9 +56,9 @@ if (Input::exits()) {
           } catch (Exception $e) {
             echo $e->getMessage();
           }
-
+          Session::delete('login');
           Session::flash('login', 'Se guardo de manera exitosa la informacion');
-          Redirect::to('?accion=login');
+          Redirect::to('?accion=logout');
 
     }else {
       # disparamos errores ...
