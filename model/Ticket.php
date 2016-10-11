@@ -182,10 +182,16 @@ class Ticket
 		return $this->_error;
 	}
 
-	public function saveInvol($id_user)
+	public function saveInvol($id_user,$id_ticket)
 	{
+		// if (empty($id_ticket)) {
+		// 	# code...
+		// 	$id_ticket = $this->last_insert_id();
+		// }
+
 		# persiste en la tabla ticket_user  ..
-		if ($this->_db->insert('ticket_users',array('id_user'=>$id_user,'id_ticket'=>$this->last_insert_id()))) {
+
+		if ($this->_db->insert('ticket_users',array('id_user'=>$id_user,'id_ticket'=>$id_ticket))) {
 			# code...
 			return true;
 		}

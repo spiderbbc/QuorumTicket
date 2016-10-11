@@ -89,16 +89,16 @@ if (Input::exits()) {
 
 	$model     = new Respuesta();
 
-	$respuesta = $model->create(array(
-
-						'uuid'          => $requestVal[0]->uuid,
-						'user_id'       => $user->data()->id,
-						'msg'           => Input::get('msg'),
-						'date_added'		=> date("Y-m-d H:i:s"),
-						'date_update'		=> date("Y-m-d H:i:s")
-
-
-			));
+	// $respuesta = $model->create(array(
+	//
+	// 					'uuid'          => $requestVal[0]->uuid,
+	// 					'user_id'       => $user->data()->id,
+	// 					'msg'           => Input::get('msg'),
+	// 					'date_added'		=> date("Y-m-d H:i:s"),
+	// 					'date_update'		=> date("Y-m-d H:i:s")
+	//
+	//
+	// 		));
 
 
 					if ($model->error()) {
@@ -108,14 +108,16 @@ if (Input::exits()) {
 
 
 
-					$emailInvol = (!empty(Input::get('email'))) ? explodeBy(';',Input::get('email')) : false ;
+					#$emailInvol = (!empty(Input::get('email'))) ? explodeBy(';',Input::get('email')) : false ;
 					# tomar los involucrados por el email pedir sus datos clave tanto para el envio del email como para la tabla pivote
 
 					//print_r($emailInvol);
 					# lo instanciamos porque se va usar sin hay email nuevos en una respuesta o no
 					$invol = new Usuario();
 
-					if ($emailInvol) {
+				#	print_r(Input::get('email'));
+
+					if (Input::get('email')) {
 						# si hay email por el post ..
 						# dataInvol = [id_user => correo del usuario] si existe
 									$dataInvol= array();
@@ -129,7 +131,7 @@ if (Input::exits()) {
 									#
 									$dataInvol[$user->data()->id] = $user->data()->email;
 
-									foreach ($emailInvol as $email) {
+									foreach (Input::get('email') as $email) {
 										# por cada email separado por el limitador ..
 										if ($invol->find($email)) {
 											# si existe en la bd ..
@@ -146,88 +148,88 @@ if (Input::exits()) {
 
 
 									#print_r($dataUser); Array ( [eduuccs@gmail.com] => chateing [ecastro@openmailbox.org] => xcastro )
-
+									#print_r($dataInvol);
 									#
 									#  guardar a los invol en tabla pivote
 									#
 									foreach (array_keys($dataInvol) as $id) {
 										# code...
-										if (!$ticket->saveInvol($id)) {
+										if (!$ticket->saveInvol($id,$requestVal[0]->id)) {
 											# code...
 											trigger_error("Upps .. no se proceso el email:{$dataInvol[$id]}");
 										}
 									}
 
 					}
-
-
-					#	echo "Se a procesado su respuesta al ticket".$requestVal[0]->id;
-
-
-					#  procesar los email para enviarlos
-					#
-
-
-					$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
-					 Config::get('sendpulse/smtp_port'),'ssl');
-					$transport->setUsername(Config::get('sendpulse/login_username'));
-					$transport->setPassword(Config::get('sendpulse/login_password'));
-					$transport->setLocalDomain('[tecnicos2]');
-					$swift = Swift_Mailer::newInstance($transport);
-
-					$subject = "QTelecom se a respondido el ticket: ".$requestVal[0]->id;
-					$text    = "Buen Dia, tenemos una respuesta ..";
-					$html = '<h1>'.$requestVal[0]->titulo.'</h1><br>
-									<em>'.Input::get('msg').'</em><br>
-									Acceder bajo el Siguiente Link <a href="http://localhost/QTelecom/?accion=ver&valor='.$requestVal[0]->uuid.'">'.$requestVal[0]->id.'</a>';
-
-
-
-
-
-
-					$message = new Swift_Message($subject);
-
-
-			//		$from = array($user->data()->email => $user->data()->username);
-					$from = array(Config::get('sendpulse/login_username') => Config::get('sendpulse/system_name'));
-					$message->setFrom($from);
-
-					$message->setBody($html, 'text/html');
-
-
-					if ($userInvol = $invol->involInfoByid_ticket($requestVal[0]->id)) {
-						# code...
-								$dataInvol = array();
-								$x = 0;
-								foreach ($invol->data() as $data[$x]) {
-									# por cada invol con infice de $x..
-									$dataInvol[$data[$x]->email] = $data[$x]->nombre;
-
-									$x ++;
-								}
-					}
-
-
-
-				#	print_r($dataInvol);
-
-
-					if (isset($dataInvol)) {
-						# code...
-						$message->setTo($dataInvol);
-					}
-
-					$message->addPart($text, 'text/plain');
-
-					if ($recipients = $swift->send($message, $failures))
-								{
-								Redirect::to('?accion=ver&valor='.$requestVal[0]->uuid);
-								} else {
-								 echo "There was an error:\n";
-								 print_r($failures);
-								}
-
+			//
+			//
+			// 		#	echo "Se a procesado su respuesta al ticket".$requestVal[0]->id;
+			//
+			//
+			// 		#  procesar los email para enviarlos
+			// 		#
+			//
+			//
+			// 		$transport = Swift_SmtpTransport::newInstance(Config::get('sendpulse/smtp_server'),
+			// 		 Config::get('sendpulse/smtp_port'),'ssl');
+			// 		$transport->setUsername(Config::get('sendpulse/login_username'));
+			// 		$transport->setPassword(Config::get('sendpulse/login_password'));
+			// 		$transport->setLocalDomain('[tecnicos2]');
+			// 		$swift = Swift_Mailer::newInstance($transport);
+			//
+			// 		$subject = "QTelecom se a respondido el ticket: ".$requestVal[0]->id;
+			// 		$text    = "Buen Dia, tenemos una respuesta ..";
+			// 		$html = '<h1>'.$requestVal[0]->titulo.'</h1><br>
+			// 						<em>'.Input::get('msg').'</em><br>
+			// 						Acceder bajo el Siguiente Link <a href="http://localhost/QTelecom/?accion=ver&valor='.$requestVal[0]->uuid.'">'.$requestVal[0]->id.'</a>';
+			//
+			//
+			//
+			//
+			//
+			//
+			// 		$message = new Swift_Message($subject);
+			//
+			//
+			// //		$from = array($user->data()->email => $user->data()->username);
+			// 		$from = array(Config::get('sendpulse/login_username') => Config::get('sendpulse/system_name'));
+			// 		$message->setFrom($from);
+			//
+			// 		$message->setBody($html, 'text/html');
+			//
+			//
+			// 		if ($userInvol = $invol->involInfoByid_ticket($requestVal[0]->id)) {
+			// 			# code...
+			// 					$dataInvol = array();
+			// 					$x = 0;
+			// 					foreach ($invol->data() as $data[$x]) {
+			// 						# por cada invol con infice de $x..
+			// 						$dataInvol[$data[$x]->email] = $data[$x]->nombre;
+			//
+			// 						$x ++;
+			// 					}
+			// 		}
+			//
+			//
+			//
+			// 	#	print_r($dataInvol);
+			//
+			//
+			// 		if (isset($dataInvol)) {
+			// 			# code...
+			// 			$message->setTo($dataInvol);
+			// 		}
+			//
+			// 		$message->addPart($text, 'text/plain');
+			//
+			// 		if ($recipients = $swift->send($message, $failures))
+			// 					{
+			// 					Redirect::to('?accion=ver&valor='.$requestVal[0]->uuid);
+			// 					} else {
+			// 					 echo "There was an error:\n";
+			// 					 print_r($failures);
+			// 					}
+			//
 
 
 					//Session::flash('success','Se a procesado su respuesta al ticket');
